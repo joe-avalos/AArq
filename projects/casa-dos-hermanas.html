@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Casa Dos Hermanas | Avalos Arquitectos</title>
     <meta name="description" content=""/>
@@ -16,7 +15,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="og:url" content="/"/>
@@ -30,55 +29,69 @@
     <meta name="twitter:description" content=""/>
     <meta name="twitter:image" content="https://avalosarquitectos.com/public/images/og_image.jpg"/>
     <link rel="stylesheet" title="css" href="/public/css/style.css?time=now" type="text/css"/>
+    <link rel="stylesheet" href="/css/enhancements.css" type="text/css"/>
     <script type="text/javascript" src="/public/js/javascript.js?time=now"></script>
+    <script>(function(){var t=localStorage.getItem('theme');if(t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.dataset.theme='dark';var l=localStorage.getItem('lang');if(l==='es')document.documentElement.lang='es';})();</script>
 </head>
 <body class="projects">
+<a href="#main-content" class="skip-nav"><span lang="en">Skip to main content</span><span lang="es">Saltar al contenido principal</span></a>
 <!-------Header------->
-<div class="header-container page">
+<header class="header-container page">
     <div class="header-inner max-width maintb">
         <div class="logo"><a href="/" title="Avalos Arquitectos"><img src="/public/images/logo.jpeg"
                                                                       alt="Avalos Arquitectos" width="225" height="225"
                                                                       class="main-logo"/></a></div>
         <div class="nav-container">
             <div class="languages">
-                <div class="links">
+                <div class="links" role="toolbar" aria-label="Site preferences">
+                    <button class="lang-toggle" aria-label="Cambiar a español">
+                        <span lang="en">ES</span><span lang="es">EN</span>
+                    </button>
+                    <span class="toolbar-separator" aria-hidden="true"></span>
+                    <button class="theme-toggle" aria-label="Switch to dark theme">
+                        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
                 </div>
             </div>
+            <nav aria-label="Main navigation">
             <div class="navigation projects">
                 <ul class="list">
-                    <li><a href="/projects" class="active">Projects</a></li>
+                    <li><a href="/projects" class="active"><span lang="en">Projects</span><span lang="es">Proyectos</span></a></li>
                     <li>
-                        <a href="/services">Services</a>
+                        <a href="/services"><span lang="en">Services</span><span lang="es">Servicios</span></a>
                         <ul class="hide">
-                            <li class="nav-link-item"><a class="nav-links" href="/services#design">Design</a></li>
+                            <li class="nav-link-item"><a class="nav-links" href="/services#design"><span lang="en">Design</span><span lang="es">Diseño</span></a></li>
                             <li class="nav-link-item"><a class="nav-links"
-                                                         href="/services#construction">Construction</a></li>
-                            <li class="nav-link-item"><a class="nav-links" href="/services#property-management">Property
-                                Management</a></li>
+                                                         href="/services#construction"><span lang="en">Construction</span><span lang="es">Construcción</span></a></li>
+                            <li class="nav-link-item"><a class="nav-links" href="/services#property-management"><span lang="en">Property
+                                Management</span><span lang="es">Administración de Propiedades</span></a></li>
                         </ul>
                     </li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/about"><span lang="en">About</span><span lang="es">Nosotros</span></a></li>
+                    <li><a href="/contact"><span lang="en">Contact</span><span lang="es">Contacto</span></a></li>
                 </ul>
-                <div class="mobile-nav"><a class="open-mobile-menu"><img src="/public/images/close.svg"
+                <div class="mobile-nav"><button class="open-mobile-menu" aria-expanded="false" aria-label="Close mobile menu"><img src="/public/images/close.svg"
                                                                          alt="Close mobile menu" width="18"
-                                                                         height="18"/></a></div>
+                                                                         height="18"/></button></div>
             </div>
+            </nav>
         </div>
-        <div class="mobile-nav"><a class="open-mobile-menu"><span class="element"><img
-                src="/public/images/hamburger.svg" alt="Open mobile menu" width="24" height="24"/></a></div>
+        <div class="mobile-nav"><button class="open-mobile-menu" aria-expanded="false" aria-label="Open mobile menu"><span class="element"><img
+                src="/public/images/hamburger.svg" alt="Open mobile menu" width="24" height="24"/></span></button></div>
         <div class="clear"></div>
     </div>
-</div>
+</header>
 <!-------End Header------->
-</div>
-<div class="wrapper-container page">
+<main id="main-content" class="wrapper-container page">
     <noscript>
         <div class="notification-wrapper">
             <div class="notification notification-error">
                 <button type="button" class="close">&times;</button>
-                <strong>JavaScript pare a fi dezactivat in browserul tau.</strong> Trebuie sa ai JavaScript activat in
-                browser pentru a putea utiliza functionalitatile acestui site.
+                <strong lang="en">JavaScript is disabled in your browser.</strong>
+                <strong lang="es">JavaScript está desactivado en tu navegador.</strong>
+                <span lang="en">You must enable JavaScript to use the features of this site.</span>
+                <span lang="es">Debes activar JavaScript para utilizar las funciones de este sitio.</span>
             </div>
         </div>
     </noscript>
@@ -86,83 +99,100 @@
         <div class="page-max-width max-width">
             <div class="button button-back"><a href="/projects" title="Back to projects"><span class="icon"><img
                     src="/public/images/back-button-arrow.svg" width="18" height="11" alt="Back icon"/></span><span
-                    class="text">Back to projects</span></a></div>
+                    class="text"><span lang="en">Back to projects</span><span lang="es">Volver a proyectos</span></span></a></div>
             <h1 class="page-title">Casa Dos Hermanas</h1>
-            <div class="page-subtitle">Residential</div>
+            <div class="page-subtitle"><span lang="en">Residential</span><span lang="es">Residencial</span></div>
             <div class="project-description">
                 <div class="left-content">
                     <div class="item">
-                        <div class="item-title">Location</div>
+                        <div class="item-title"><span lang="en">Location</span><span lang="es">Ubicación</span></div>
                         <div class="item-subtitle">Cabo San Lucas, México</div>
                     </div>
                     <div class="item">
-                        <div class="item-title">Size</div>
+                        <div class="item-title"><span lang="en">Size</span><span lang="es">Tamaño</span></div>
                         <div class="item-subtitle"><span class="size-lot">835.80 m<sup>2 lot</sup></span><span
                                 class="size-roof">271.96 m<sup>2 under roof</sup></span></div>
                     </div>
                     <div class="item">
-                        <div class="item-title">Year</div>
+                        <div class="item-title"><span lang="en">Year</span><span lang="es">Año</span></div>
                         <div class="item-subtitle">1998</div>
                     </div>
                 </div>
                 <div class="right-content">
                     <div class="description">
-                        Casa Dos Hermanas was created as a family meeting place for two sisters, one living in
+                        <p lang="en">Casa Dos Hermanas was created as a family meeting place for two sisters, one living in
                         Massachusetts and the other in Oregon. A simple and elegant selection of materials ensures
                         timeless appeal: the design uses clean forms and lines with a palette of natural woods and
-                        cantera limestone against a background of sun-washed rough stucco walls painted in desert tones.
+                        cantera limestone against a background of sun-washed rough stucco walls painted in desert tones.</p>
+                        <p lang="es">Casa Dos Hermanas fue creada como un lugar de reunión familiar para dos hermanas, una residente en
+                        Massachusetts y la otra en Oregon. Una selección simple y elegante de materiales asegura un
+                        atractivo atemporal: el diseño utiliza formas y líneas limpias con una paleta de maderas naturales y
+                        piedra cantera sobre un fondo de muros de estuco rugoso bañados por el sol, pintados en tonos desérticos.</p>
                     </div>
                 </div>
             </div>
         </div>
         <div class="project-article project-casa-dos-hermanas">
-            <div class="headline-image"></div>
+            <div class="headline-image" role="img" aria-label="Casa Dos Hermanas"></div>
             <div class="page-services max-width">
                 <div class="elements-container">
                     <div class="content">
                         <div class="element-description">
-                            <p>Inspired by the concept of community, the design is conceived as a village organized
+                            <p lang="en">Inspired by the concept of community, the design is conceived as a village organized
                                 around terraces and patios as if they were public squares. A central courtyard,
                                 sheltered from the wind, grounds the spaces. The living area and dining room open onto
                                 the courtyard, which features a pool, barbecue area, palm-roof palapa, and sweeping
                                 sunset views across the ocean.</p>
+                            <p lang="es">Inspirado en el concepto de comunidad, el diseño está concebido como un pueblo organizado
+                                alrededor de terrazas y patios como si fueran plazas públicas. Un patio central,
+                                protegido del viento, ancla los espacios. El área de estar y el comedor se abren hacia
+                                el patio, que cuenta con piscina, área de barbacoa, palapa con techo de palma y amplias
+                                vistas del atardecer sobre el océano.</p>
                         </div>
                     </div>
-                    <div class="image image-project-left"></div>
+                    <div class="image image-project-left" role="img" aria-label="Casa Dos Hermanas"></div>
                 </div>
                 <div class="elements-container leftc">
                     <div class="content">
                         <div class="element-description">
-                            <p>The mix of common and private spaces balances the communal feel of a shared space with
-                                independence and individuality for both families. The home’s tiered form on its hillside
+                            <p lang="en">The mix of common and private spaces balances the communal feel of a shared space with
+                                independence and individuality for both families. The home's tiered form on its hillside
                                 lot provides plenty of opportunities for inside-outside living, with panoramic views at
                                 every level.</p>
+                            <p lang="es">La combinación de espacios comunes y privados equilibra la sensación comunitaria de un espacio compartido con
+                                la independencia e individualidad para ambas familias. La forma escalonada de la casa en su terreno en ladera
+                                ofrece abundantes oportunidades para la vida interior-exterior, con vistas panorámicas en
+                                cada nivel.</p>
                         </div>
                     </div>
-                    <div class="image image-project-right"></div>
+                    <div class="image image-project-right" role="img" aria-label="Casa Dos Hermanas"></div>
                 </div>
             </div>
             <div class="double-image max-width">
                 <div class="description">
-                    <p>Designing for two sisters allowed AAA to work with each sister individually, with each couple,
+                    <p lang="en">Designing for two sisters allowed AAA to work with each sister individually, with each couple,
                         and with the families together to design and build a home that worked for everyone.</p>
+                    <p lang="es">Diseñar para dos hermanas permitió a AAA trabajar con cada hermana individualmente, con cada pareja
+                        y con las familias juntas para diseñar y construir un hogar que funcionara para todos.</p>
                 </div>
                 <div class="images">
-                    <div class="image image-left"></div>
-                    <div class="image image-right"></div>
+                    <div class="image image-left" role="img" aria-label="Casa Dos Hermanas"></div>
+                    <div class="image image-right" role="img" aria-label="Casa Dos Hermanas"></div>
                 </div>
             </div>
             <div class="image-separator max-width">
                 <div class="description">
-                    <p>The home has had multiple owners since it was built, and has gone through several renovations and
+                    <p lang="en">The home has had multiple owners since it was built, and has gone through several renovations and
                         extensions with AAA.</p>
+                    <p lang="es">La casa ha tenido múltiples propietarios desde que fue construida y ha pasado por varias renovaciones y
+                        ampliaciones con AAA.</p>
                 </div>
-                <div class="image"></div>
+                <div class="image" role="img" aria-label="Casa Dos Hermanas"></div>
             </div>
             <div class="double-image double-image-2 max-width">
                 <div class="images">
-                    <div class="image image-left"></div>
-                    <div class="image image-right"></div>
+                    <div class="image image-left" role="img" aria-label="Casa Dos Hermanas"></div>
+                    <div class="image image-right" role="img" aria-label="Casa Dos Hermanas"></div>
                 </div>
             </div>
             <div class="project-carousel">
@@ -170,7 +200,7 @@
                     <div class="item">
                 <span class="image-wrapper">
                     <span class="img"
-                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image.jpg')">
+                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image.jpg')" role="img" aria-label="Casa Dos Hermanas">
                         <span class="overlay"></span>
                     </span>
                 </span>
@@ -178,7 +208,7 @@
                     <div class="item">
                 <span class="image-wrapper">
                     <span class="img"
-                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image-1.jpg')">
+                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image-1.jpg')" role="img" aria-label="Casa Dos Hermanas">
                         <span class="overlay"></span>
                     </span>
                 </span>
@@ -186,7 +216,7 @@
                     <div class="item">
                 <span class="image-wrapper">
                     <span class="img"
-                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image-2.jpg')">
+                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image-2.jpg')" role="img" aria-label="Casa Dos Hermanas">
                         <span class="overlay"></span>
                     </span>
                 </span>
@@ -194,7 +224,7 @@
                     <div class="item">
                 <span class="image-wrapper">
                     <span class="img"
-                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image-3.jpg')">
+                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image-3.jpg')" role="img" aria-label="Casa Dos Hermanas">
                         <span class="overlay"></span>
                     </span>
                 </span>
@@ -202,7 +232,7 @@
                     <div class="item">
                 <span class="image-wrapper">
                     <span class="img"
-                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image-4.jpg')">
+                          style="background-image:url('/public/content/projects/casa-dos-hermanas/slider-image-4.jpg')" role="img" aria-label="Casa Dos Hermanas">
                         <span class="overlay"></span>
                     </span>
                 </span>
@@ -212,8 +242,8 @@
         </div>
     </div>
     <div class="clear"></div>
-</div>
-<div class="footer-container">
+</main>
+<footer class="footer-container">
     <div class="footer-inner max-width">
         <div class="footer-flex-container mobile-wrap">
             <div class="footer-flex-container logo-container">
@@ -222,24 +252,26 @@
                                                                                   alt="Avalos Arquitectos" width="100"
                                                                                   height="100" class="main-logo"/></a>
                     </div>
-                    <div class="motto">“We do not design spaces.<br/>We create lifestyles.”</div>
+                    <div class="motto"><span lang="en">"We do not design spaces.<br/>We create lifestyles."</span><span lang="es">"No diseñamos espacios.<br/>Creamos estilos de vida."</span></div>
                 </div>
 
             </div>
             <div class="footer-flex-container middle-container">
                 <div class="footer-item">
-                    <div class="footer-item-title">Sitemap</div>
+                    <div class="footer-item-title"><span lang="en">Sitemap</span><span lang="es">Mapa del sitio</span></div>
+                    <nav aria-label="Footer navigation">
                     <div class="footer-item-links">
                         <ul class="link-list">
-                            <li><a href="/projects">Projects</a></li>
-                            <li><a href="/services">Services</a></li>
-                            <li><a href="/about">About</a></li>
-                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/projects"><span lang="en">Projects</span><span lang="es">Proyectos</span></a></li>
+                            <li><a href="/services"><span lang="en">Services</span><span lang="es">Servicios</span></a></li>
+                            <li><a href="/about"><span lang="en">About</span><span lang="es">Nosotros</span></a></li>
+                            <li><a href="/contact"><span lang="en">Contact</span><span lang="es">Contacto</span></a></li>
                         </ul>
                     </div>
+                    </nav>
                 </div>
                 <div class="footer-item">
-                    <div class="footer-item-title">Find us</div>
+                    <div class="footer-item-title"><span lang="en">Find us</span><span lang="es">Encuéntranos</span></div>
                     <div class="link">
                         <a href="https://maps.app.goo.gl/d9BxKSN5XKhLBRo56" target="_blank" rel="nofollow">
                             Camino del Pedernal 160<br/>Pedregal<br/>Cabo San Lucas<br/>Baja California Sur<br/>CP 23453<br/>Mexico
@@ -249,13 +281,13 @@
             </div>
             <div class="footer-flex-container">
                 <div class="footer-item">
-                    <div class="footer-item-title">Phone</div>
+                    <div class="footer-item-title"><span lang="en">Phone</span><span lang="es">Teléfono</span></div>
                     <div class="footer-item-links">
                         <ul class="link-list">
                             <li><a href="tel:+526241431440">+52 (624) 143.1440</a></li>
                         </ul>
                     </div>
-                    <div class="footer-item-title">Jacinto Avalos and potential projects:</div>
+                    <div class="footer-item-title"><span lang="en">Jacinto Avalos and potential projects:</span><span lang="es">Jacinto Avalos y proyectos potenciales:</span></div>
                     <div class="footer-item-links">
                         <ul class="link-list">
                             <li><span id="e505578182"></span>
@@ -264,7 +296,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="footer-item-title">General, press, and employment inquiries:</div>
+                    <div class="footer-item-title"><span lang="en">General, press, and employment inquiries:</span><span lang="es">Consultas generales, de prensa y empleo:</span></div>
                     <div class="link">
                         <span id="e184717011"></span>
                         <script type="text/javascript">/*<![CDATA[*/
@@ -275,10 +307,11 @@
         </div>
         <div class="footer-copyright">&copy; 2026 Avalos Arquitectos y Asociados, S.C.</div>
     </div>
-</div>
+</footer>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
         integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
         data-cf-beacon='{"version":"2024.11.0","token":"eaabd9cafe2547278f1816f304779694","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
         crossorigin="anonymous"></script>
+<script src="/js/enhancements.js"></script>
 </body>
 </html>

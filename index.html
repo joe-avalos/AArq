@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Avalos | Avalos Arquitectos</title>
     <meta name="description" content=""/>
@@ -16,7 +15,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="og:url" content="/"/>
@@ -30,105 +29,118 @@
     <meta name="twitter:description" content=""/>
     <meta name="twitter:image" content="https://avalosarquitectos.com/public/images/og_image.jpg"/>
     <link rel="stylesheet" title="css" href="/public/css/style.css?time=now" type="text/css"/>
+    <link rel="stylesheet" href="/css/enhancements.css" type="text/css"/>
     <script type="text/javascript" src="/public/js/javascript.js?time=now"></script>
+    <script>(function(){var t=localStorage.getItem('theme');if(t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.dataset.theme='dark';var l=localStorage.getItem('lang');if(l==='es')document.documentElement.lang='es';})();</script>
 </head>
 <body class="home">
+<a href="#main-content" class="skip-nav"><span lang="en">Skip to main content</span><span lang="es">Saltar al contenido principal</span></a>
 <!-------Header------->
-<div class="header-container home">
+<header class="header-container home">
     <div class="header-inner max-width maintb">
         <div class="logo"><a href="/" title="Avalos Arquitectos"><img src="/public/images/logo.jpeg"
                                                                       alt="Avalos Arquitectos" width="225" height="225"
                                                                       class="main-logo"/></a></div>
         <div class="nav-container">
             <div class="languages">
-                <div class="links">
+                <div class="links" role="toolbar" aria-label="Site preferences">
+                    <button class="lang-toggle" aria-label="Cambiar a español">
+                        <span lang="en">ES</span><span lang="es">EN</span>
+                    </button>
+                    <span class="toolbar-separator" aria-hidden="true"></span>
+                    <button class="theme-toggle" aria-label="Switch to dark theme">
+                        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
                 </div>
             </div>
+            <nav aria-label="Main navigation">
             <div class="navigation home">
                 <ul class="list">
-                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/projects"><span lang="en">Projects</span><span lang="es">Proyectos</span></a></li>
                     <li>
-                        <a href="/services">Services</a>
+                        <a href="/services"><span lang="en">Services</span><span lang="es">Servicios</span></a>
                         <ul class="hide">
-                            <li class="nav-link-item"><a class="nav-links" href="/services#design">Design</a></li>
+                            <li class="nav-link-item"><a class="nav-links" href="/services#design"><span lang="en">Design</span><span lang="es">Diseño</span></a></li>
                             <li class="nav-link-item"><a class="nav-links"
-                                                         href="/services#construction">Construction</a></li>
-                            <li class="nav-link-item"><a class="nav-links" href="/services#property-management">Property
-                                Management</a></li>
+                                                         href="/services#construction"><span lang="en">Construction</span><span lang="es">Construcción</span></a></li>
+                            <li class="nav-link-item"><a class="nav-links" href="/services#property-management"><span lang="en">Property Management</span><span lang="es">Administración de Propiedades</span></a></li>
                         </ul>
                     </li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/about"><span lang="en">About</span><span lang="es">Nosotros</span></a></li>
+                    <li><a href="/contact"><span lang="en">Contact</span><span lang="es">Contacto</span></a></li>
                 </ul>
-                <div class="mobile-nav"><a class="open-mobile-menu"><img src="/public/images/close.svg"
-                                                                         alt="Close mobile menu" width="18"
-                                                                         height="18"/></a></div>
+                <div class="mobile-nav"><button class="open-mobile-menu" aria-expanded="false" aria-label="Close menu"><img src="/public/images/close.svg"
+                                                                     alt="" width="18"
+                                                                     height="18"/></button></div>
             </div>
+            </nav>
         </div>
-        <div class="mobile-nav"><a class="open-mobile-menu"><span class="element"><img
-                src="/public/images/hamburger.svg" alt="Open mobile menu" width="24" height="24"/></a></div>
+        <div class="mobile-nav"><button class="open-mobile-menu" aria-expanded="false" aria-label="Open menu"><span class="element"><img
+                src="/public/images/hamburger.svg" alt="" width="24" height="24"/></span></button></div>
         <div class="clear"></div>
     </div>
-</div>
+</header>
 <!-------End Header------->
-</div>
-<div class="wrapper-container home">
+<main id="main-content" class="wrapper-container home">
     <noscript>
         <div class="notification-wrapper">
             <div class="notification notification-error">
                 <button type="button" class="close">&times;</button>
-                <strong>JavaScript pare a fi dezactivat in browserul tau.</strong> Trebuie sa ai JavaScript activat in
-                browser pentru a putea utiliza functionalitatile acestui site.
+                <strong lang="en">JavaScript is disabled in your browser.</strong>
+                <strong lang="es">JavaScript está desactivado en tu navegador.</strong>
+                <span lang="en">You must enable JavaScript to use the features of this site.</span>
+                <span lang="es">Debes activar JavaScript para utilizar las funciones de este sitio.</span>
             </div>
         </div>
     </noscript>
     <div class="homepage">
         <div class="fullscreen-slider">
-            <div class="owl-carousel owl-theme">
+            <div class="owl-carousel owl-theme" aria-roledescription="carousel" aria-label="Featured projects">
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-16-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-16-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-1-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-1-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-2-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-2-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-3-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-3-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-4-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-4-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-5-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-5-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-6-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-6-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-7-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-7-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-8-min.jpg')"></div>
+                    <div style="background-image: url(' content/homepage/homepage-slider-8-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-10-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-10-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-11-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-11-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-12-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-12-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-13-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-13-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-14-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-14-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
                 <div class="item">
-                    <div style="background-image: url('/public/content/homepage/homepage-slider-15-min.jpg')"></div>
+                    <div style="background-image: url('/public/content/homepage/homepage-slider-15-min.jpg')" role="img" aria-label="Architectural project by Avalos Arquitectos"></div>
                 </div>
             </div>
         </div>
@@ -138,3 +150,7 @@
             integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
             data-cf-beacon='{"version":"2024.11.0","token":"eaabd9cafe2547278f1816f304779694","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
             crossorigin="anonymous"></script>
+</main>
+<script src="/js/enhancements.js"></script>
+</body>
+</html>

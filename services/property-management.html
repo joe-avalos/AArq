@@ -1,6 +1,5 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <title>Avalos | Avalos Arquitectos</title>
     <meta name="description" content=""/>
@@ -16,7 +15,7 @@
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
     <meta name="msapplication-TileColor" content="#da532c">
     <meta name="theme-color" content="#ffffff">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta http-equiv="imagetoolbar" content="no"/>
     <meta property="og:locale" content="en_US"/>
     <meta property="og:url" content="/"/>
@@ -30,91 +29,109 @@
     <meta name="twitter:description" content=""/>
     <meta name="twitter:image" content="https://avalosarquitectos.com/public/images/og_image.jpg"/>
     <link rel="stylesheet" title="css" href="/public/css/style.css?time=now" type="text/css"/>
+    <link rel="stylesheet" href="/css/enhancements.css" type="text/css"/>
     <script type="text/javascript" src="/public/js/javascript.js?time=now"></script>
+    <script>(function(){var t=localStorage.getItem('theme');if(t==='dark'||(t!=='light'&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.dataset.theme='dark';var l=localStorage.getItem('lang');if(l==='es')document.documentElement.lang='es';})();</script>
 </head>
 <body class="services">
+<a href="#main-content" class="skip-nav"><span lang="en">Skip to main content</span><span lang="es">Saltar al contenido principal</span></a>
 <!-------Header------->
-<div class="header-container page">
+<header class="header-container page">
     <div class="header-inner max-width maintb">
         <div class="logo"><a href="/" title="Avalos Arquitectos"><img src="/public/images/logo.jpeg"
                                                                       alt="Avalos Arquitectos" width="225" height="225"
                                                                       class="main-logo"/></a></div>
         <div class="nav-container">
             <div class="languages">
-                <div class="links">
+                <div class="links" role="toolbar" aria-label="Site preferences">
+                    <button class="lang-toggle" aria-label="Cambiar a español">
+                        <span lang="en">ES</span><span lang="es">EN</span>
+                    </button>
+                    <span class="toolbar-separator" aria-hidden="true"></span>
+                    <button class="theme-toggle" aria-label="Switch to dark theme">
+                        <svg class="icon-sun" aria-hidden="true" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                        <svg class="icon-moon" aria-hidden="true" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+                    </button>
                 </div>
             </div>
+            <nav aria-label="Main navigation">
             <div class="navigation services">
                 <ul class="list">
-                    <li><a href="/projects">Projects</a></li>
+                    <li><a href="/projects"><span lang="en">Projects</span><span lang="es">Proyectos</span></a></li>
                     <li>
-                        <a href="/services" class="active">Services</a>
+                        <a href="/services" class="active"><span lang="en">Services</span><span lang="es">Servicios</span></a>
                         <ul class="hide">
-                            <li class="nav-link-item"><a class="nav-links" onclick="openTab(event, 'design')">Design</a>
+                            <li class="nav-link-item"><a class="nav-links" onclick="openTab(event, 'design')"><span lang="en">Design</span><span lang="es">Diseño</span></a>
                             </li>
-                            <li class="nav-link-item"><a class="nav-links" onclick="openTab(event, 'construction')">Construction</a>
+                            <li class="nav-link-item"><a class="nav-links" onclick="openTab(event, 'construction')"><span lang="en">Construction</span><span lang="es">Construcción</span></a>
                             </li>
                             <li class="nav-link-item"><a class="nav-links"
-                                                         onclick="openTab(event, 'property-management')">Property
-                                Management</a></li>
+                                                         onclick="openTab(event, 'property-management')"><span lang="en">Property
+                                Management</span><span lang="es">Administración de Propiedades</span></a></li>
                         </ul>
                     </li>
-                    <li><a href="/about">About</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/about"><span lang="en">About</span><span lang="es">Nosotros</span></a></li>
+                    <li><a href="/contact"><span lang="en">Contact</span><span lang="es">Contacto</span></a></li>
                 </ul>
-                <div class="mobile-nav"><a class="open-mobile-menu"><img src="/public/images/close.svg"
+                <div class="mobile-nav"><button class="open-mobile-menu" aria-label="Close menu" aria-expanded="false"><img src="/public/images/close.svg"
                                                                          alt="Close mobile menu" width="18"
-                                                                         height="18"/></a></div>
+                                                                         height="18"/></button></div>
             </div>
+            </nav>
         </div>
-        <div class="mobile-nav"><a class="open-mobile-menu"><span class="element"><img
-                src="/public/images/hamburger.svg" alt="Open mobile menu" width="24" height="24"/></a></div>
+        <div class="mobile-nav"><button class="open-mobile-menu" aria-label="Open mobile menu" aria-expanded="false"><span class="element"><img
+                src="/public/images/hamburger.svg" alt="Open mobile menu" width="24" height="24"/></span></button></div>
         <div class="clear"></div>
     </div>
-</div>
+</header>
 <!-------End Header------->
-</div>
-<div class="wrapper-container page">
+<main id="main-content" class="wrapper-container page">
     <noscript>
         <div class="notification-wrapper">
             <div class="notification notification-error">
                 <button type="button" class="close">&times;</button>
-                <strong>JavaScript pare a fi dezactivat in browserul tau.</strong> Trebuie sa ai JavaScript activat in
-                browser pentru a putea utiliza functionalitatile acestui site.
+                <strong lang="en">JavaScript appears to be disabled in your browser.</strong>
+                <span lang="en">You must have JavaScript enabled in your browser to use the features of this site.</span>
+                <strong lang="es">JavaScript parece estar desactivado en tu navegador.</strong>
+                <span lang="es">Debes tener JavaScript activado en tu navegador para utilizar las funciones de este sitio.</span>
             </div>
         </div>
     </noscript>
     <div class="page page-services">
         <div class="page-max-width max-width">
-            <h1 class="page-title">Services</h1>
-            <p class="about-info-text">We are driven by experience, collaboration, and the belief that thoughtful design
-                supports living life to its fullest.</p>
-            <!-- <p class="about-info-text">We skillfully conceptualize designs and manage all construction aspects to project completion and beyond.</p> -->
+            <h1 class="page-title"><span lang="en">Services</span><span lang="es">Servicios</span></h1>
+            <p class="about-info-text"><span lang="en">We are driven by experience, collaboration, and the belief that thoughtful design
+                supports living life to its fullest.</span><span lang="es">Nos impulsa la experiencia, la colaboración y la creencia de que el diseño reflexivo
+                apoya vivir la vida al máximo.</span></p>
             <div class="tab-container">
                 <div class="tabs" id="foo">
-                    <a class="tab-link design active" href="javascript:void(0)" onclick="openTab(event, 'design')"
-                       title="Show design tab"><span class="line">Design</span></a>
-                    <a class="tab-link construction" href="javascript:void(0)" onclick="openTab(event, 'construction')"
-                       title="Show construction tab"><span class="line">Construction</span></a>
-                    <a class="tab-link property-management" href="javascript:void(0)"
+                    <button class="tab-link design active" onclick="openTab(event, 'design')"
+                       title="Show design tab"><span class="line"><span lang="en">Design</span><span lang="es">Diseño</span></span></button>
+                    <button class="tab-link construction" onclick="openTab(event, 'construction')"
+                       title="Show construction tab"><span class="line"><span lang="en">Construction</span><span lang="es">Construcción</span></span></button>
+                    <button class="tab-link property-management"
                        onclick="openTab(event, 'property-management')" title="Show property management tab"><span
-                            class="line">Property Management</span></a>
+                            class="line"><span lang="en">Property Management</span><span lang="es">Administración de Propiedades</span></span></button>
                 </div>
             </div>
 
             <div class="tab-content active" id="tab-design">
                 <div class="elements-container">
                     <div class="content">
-                        <h2 class="element-title">Architecture</h2>
+                        <h2 class="element-title"><span lang="en">Architecture</span><span lang="es">Arquitectura</span></h2>
                         <div class="element-description">
-                            <p>Architecture creates lifestyles. Fundamental to our approach is a passion for what we do,
-                                a commitment to create original, meaningful work, and a purpose to realize our clients’
-                                dreams and requirements.</p>
-                            <p>The individual character of each project emerges from a deep understanding of our
+                            <p><span lang="en">Architecture creates lifestyles. Fundamental to our approach is a passion for what we do,
+                                a commitment to create original, meaningful work, and a purpose to realize our clients'
+                                dreams and requirements.</span><span lang="es">La arquitectura crea estilos de vida. Fundamental en nuestro enfoque es la pasión por lo que hacemos,
+                                el compromiso de crear trabajo original y significativo, y el propósito de realizar los sueños y requisitos de nuestros clientes.</span></p>
+                            <p><span lang="en">The individual character of each project emerges from a deep understanding of our
                                 clients, respect for the site and the surrounding environment, carefully chosen
-                                materials, and exacting detail in execution.</p>
-                            <p>We bring a variety of methods into the process for our clients, including drawings and
-                                sketches, images, renderings, and three-dimensional models.</p>
+                                materials, and exacting detail in execution.</span><span lang="es">El carácter individual de cada proyecto surge de una profunda comprensión de nuestros
+                                clientes, el respeto por el sitio y el entorno circundante, materiales cuidadosamente elegidos
+                                y un detalle meticuloso en la ejecución.</span></p>
+                            <p><span lang="en">We bring a variety of methods into the process for our clients, including drawings and
+                                sketches, images, renderings, and three-dimensional models.</span><span lang="es">Aportamos una variedad de métodos al proceso para nuestros clientes, incluyendo dibujos y
+                                bocetos, imágenes, renderizados y modelos tridimensionales.</span></p>
                         </div>
                     </div>
                     <div class="image"><img class="desktop" src="/public/content/services/design/urban.jpg" width="552"
@@ -122,12 +139,15 @@
                 </div>
                 <div class="elements-container leftc">
                     <div class="content">
-                        <h2 class="element-title">Urban Planning & Design</h2>
+                        <h2 class="element-title"><span lang="en">Urban Planning & Design</span><span lang="es">Planificación Urbana y Diseño</span></h2>
                         <div class="element-description">
-                            <p>We believe in creating beautiful, functional buildings that exist in harmony with the
+                            <p><span lang="en">We believe in creating beautiful, functional buildings that exist in harmony with the
                                 environment. We integrate sustainability principles across our processes to build
                                 environmentally and ethically responsible and resilient structures that will be enjoyed
-                                for generations.</p>
+                                for generations.</span><span lang="es">Creemos en crear edificios hermosos y funcionales que existan en armonía con el
+                                medio ambiente. Integramos principios de sostenibilidad en todos nuestros procesos para construir
+                                estructuras ambientalmente y éticamente responsables y resilientes que serán disfrutadas
+                                por generaciones.</span></p>
                         </div>
                     </div>
                     <div class="image image-arhitecture"><img class="desktop"
@@ -136,20 +156,28 @@
                 </div>
                 <div class="elements-container">
                     <div class="content">
-                        <h2 class="element-title">Interior Design</h2>
+                        <h2 class="element-title"><span lang="en">Interior Design</span><span lang="es">Diseño de Interiores</span></h2>
                         <div class="element-description">
-                            <p>A successful interior design creates a sense of place and belonging. We are dedicated to
-                                creating unified spaces informed by our clients’ lifestyles, needs, dreams, and
-                                stories.</p>
-                            <p>We favor homes of calibrated simplicity that are warm and elegant. Our projects use
+                            <p><span lang="en">A successful interior design creates a sense of place and belonging. We are dedicated to
+                                creating unified spaces informed by our clients' lifestyles, needs, dreams, and
+                                stories.</span><span lang="es">Un diseño de interiores exitoso crea un sentido de lugar y pertenencia. Nos dedicamos a
+                                crear espacios unificados informados por los estilos de vida, necesidades, sueños e
+                                historias de nuestros clientes.</span></p>
+                            <p><span lang="en">We favor homes of calibrated simplicity that are warm and elegant. Our projects use
                                 modern, functional furniture and unique pieces from artisans and artists across Mexico.
                                 Our public and commercial interiors balance a residential sensibility with a thorough
-                                understanding of space planning and technology.</p>
-                            <p>As the architects, designers, and builders, we approach the design of a space as one
+                                understanding of space planning and technology.</span><span lang="es">Favorecemos hogares de simplicidad calibrada que son cálidos y elegantes. Nuestros proyectos utilizan
+                                muebles modernos y funcionales y piezas únicas de artesanos y artistas de todo México.
+                                Nuestros interiores públicos y comerciales equilibran una sensibilidad residencial con una comprensión
+                                profunda de la planificación del espacio y la tecnología.</span></p>
+                            <p><span lang="en">As the architects, designers, and builders, we approach the design of a space as one
                                 holistic vision. Interior design conception is built into our process from the start and
-                                developed in parallel with the project itself.</p>
-                            <p>Our team aims to provide a seamless experience for our clients. We develop a complete
-                                turnkey proposal and manage the project from conception to installation.</p>
+                                developed in parallel with the project itself.</span><span lang="es">Como arquitectos, diseñadores y constructores, abordamos el diseño de un espacio como una
+                                visión holística. La concepción del diseño de interiores está integrada en nuestro proceso desde el inicio y
+                                se desarrolla en paralelo con el proyecto mismo.</span></p>
+                            <p><span lang="en">Our team aims to provide a seamless experience for our clients. We develop a complete
+                                turnkey proposal and manage the project from conception to installation.</span><span lang="es">Nuestro equipo tiene como objetivo proporcionar una experiencia sin contratiempos para nuestros clientes. Desarrollamos una propuesta
+                                llave en mano completa y gestionamos el proyecto desde la concepción hasta la instalación.</span></p>
                         </div>
                     </div>
                     <div class="image"><img class="desktop" src="/public/content/services/design/design.jpg" width="552"
@@ -157,11 +185,11 @@
                 </div>
                 <div class="elements-container leftc">
                     <div class="content">
-                        <h2 class="element-title">Landscape Architecture</h2>
+                        <h2 class="element-title"><span lang="en">Landscape Architecture</span><span lang="es">Arquitectura de Paisaje</span></h2>
                         <div class="element-description">
-                            <p>We view landscape as an integral part of architecture: the structure and the land are an
-                                expression of one singular concept.</p>
-                            <!-- <p>We use native plants with an  emphasis on texture and color. Existing rock formations and flora act as natural sculpture. Glass walls, open patios, and diffuse, warm light that fills interior volumes captures the drama of the site and extends the living spaces beyond the threshold.</p> -->
+                            <p><span lang="en">We view landscape as an integral part of architecture: the structure and the land are an
+                                expression of one singular concept.</span><span lang="es">Vemos el paisaje como una parte integral de la arquitectura: la estructura y el terreno son una
+                                expresión de un concepto singular.</span></p>
                         </div>
                     </div>
                     <div class="image image-arhitecture"><img class="desktop"
@@ -172,19 +200,27 @@
             <div class="tab-content" id="tab-construction">
                 <div class="elements-container">
                     <div class="content">
-                        <h2 class="element-title">General Contractor</h2>
+                        <h2 class="element-title"><span lang="en">General Contractor</span><span lang="es">Contratista General</span></h2>
                         <div class="element-description">
-                            <p>A unique aspect of our firm is that we offer both architecture and general contractor
+                            <p><span lang="en">A unique aspect of our firm is that we offer both architecture and general contractor
                                 services. We provide a single source of responsibility from project conception to
                                 move-in. This allows us to achieve standards of excellence that are more difficult to
-                                realize when the architect and contractors are separate and unrelated parties.</p>
-                            <p>We only engage trusted, experienced professionals who can perform the work on time, on
+                                realize when the architect and contractors are separate and unrelated parties.</span><span lang="es">Un aspecto único de nuestra firma es que ofrecemos tanto servicios de arquitectura como de contratista general.
+                                Proporcionamos una fuente única de responsabilidad desde la concepción del proyecto hasta la mudanza.
+                                Esto nos permite alcanzar estándares de excelencia que son más difíciles de lograr cuando el arquitecto
+                                y los contratistas son partes separadas y no relacionadas.</span></p>
+                            <p><span lang="en">We only engage trusted, experienced professionals who can perform the work on time, on
                                 budget, and at or above expected levels of quality. We review all contracts, including
                                 scope of work and fees. Construction includes coordination, supervision, and management
                                 of all activities related to the development of architectural projects, as well as all
-                                structural components and installations, and technical aspects of construction.</p>
-                            <p>We remain highly engaged throughout the process to ensure conformity to owner-approved
-                                plans and goals.</p>
+                                structural components and installations, and technical aspects of construction.</span><span lang="es">Solo contratamos profesionales de confianza y con experiencia que puedan realizar el trabajo a tiempo,
+                                dentro del presupuesto y al nivel de calidad esperado o superior. Revisamos todos los contratos, incluyendo
+                                el alcance del trabajo y los honorarios. La construcción incluye la coordinación, supervisión y gestión
+                                de todas las actividades relacionadas con el desarrollo de proyectos arquitectónicos, así como todos
+                                los componentes estructurales e instalaciones, y aspectos técnicos de la construcción.</span></p>
+                            <p><span lang="en">We remain highly engaged throughout the process to ensure conformity to owner-approved
+                                plans and goals.</span><span lang="es">Permanecemos altamente comprometidos durante todo el proceso para asegurar la conformidad con los
+                                planes y objetivos aprobados por el propietario.</span></p>
                         </div>
                     </div>
                     <div class="image"><img class="desktop" src="/public/content/services/construction/contractor.jpg"
@@ -192,16 +228,22 @@
                 </div>
                 <div class="elements-container leftc">
                     <div class="content">
-                        <h2 class="element-title">Project Development</h2>
+                        <h2 class="element-title"><span lang="en">Project Development</span><span lang="es">Desarrollo de Proyectos</span></h2>
                         <div class="element-description">
-                            <p>We define in detail and with precision all the functional and formal aspects of the
+                            <p><span lang="en">We define in detail and with precision all the functional and formal aspects of the
                                 preliminary design with specific technical and budget solutions, the final construction
                                 plans and designs, and also anticipate any required future plans. Our project
                                 development work will consider all relevant federal, state and municipal codes as well
                                 as local community restrictions. Project development may also include the different
                                 engineering services our team provides: structural and civil engineering; electrical and
                                 lighting; plumbing; air conditioning and propane installations; video, sound, and
-                                data.</p>
+                                data.</span><span lang="es">Definimos en detalle y con precisión todos los aspectos funcionales y formales del
+                                diseño preliminar con soluciones técnicas y presupuestarias específicas, los planos y diseños
+                                finales de construcción, y también anticipamos cualquier plan futuro requerido. Nuestro trabajo
+                                de desarrollo de proyectos considera todos los códigos federales, estatales y municipales relevantes,
+                                así como las restricciones de la comunidad local. El desarrollo de proyectos también puede incluir
+                                los diferentes servicios de ingeniería que nuestro equipo proporciona: ingeniería estructural y civil;
+                                eléctrica e iluminación; plomería; instalaciones de aire acondicionado y gas propano; video, sonido y datos.</span></p>
                         </div>
                     </div>
                     <div class="image image-project-development"><img class="desktop"
@@ -213,14 +255,18 @@
             <div class="tab-content" id="tab-property-management">
                 <div class="elements-container">
                     <div class="content">
-                        <h2 class="element-title">Management & Supervision</h2>
+                        <h2 class="element-title"><span lang="en">Management & Supervision</span><span lang="es">Gestión y Supervisión</span></h2>
                         <div class="element-description">
-                            <p>We offer comprehensive property management services in Los Cabos to maintain your estate
+                            <p><span lang="en">We offer comprehensive property management services in Los Cabos to maintain your estate
                                 in perfect condition. Our experienced property management team gives our clients the
                                 peace of mind to enjoy having a home in the Los Cabos area with the knowledge that it is
                                 supervised, maintained, and protected. Our firm can securely coordinate all routine and
                                 emergency repair and maintenance services via our team of professional contractors and
-                                technicians.</p>
+                                technicians.</span><span lang="es">Ofrecemos servicios integrales de administración de propiedades en Los Cabos para mantener su propiedad
+                                en perfectas condiciones. Nuestro experimentado equipo de administración de propiedades brinda a nuestros clientes
+                                la tranquilidad de disfrutar tener un hogar en el área de Los Cabos con la certeza de que está
+                                supervisado, mantenido y protegido. Nuestra firma puede coordinar de manera segura todos los servicios
+                                de reparación y mantenimiento rutinarios y de emergencia a través de nuestro equipo de contratistas y técnicos profesionales.</span></p>
                         </div>
                     </div>
                     <div class="image image-management"><img class="desktop"
@@ -230,27 +276,29 @@
                 </div>
                 <div class="elements-container leftc">
                     <div class="content">
-                        <h2 class="element-title">Concierge Services</h2>
+                        <h2 class="element-title"><span lang="en">Concierge Services</span><span lang="es">Servicios de Concierge</span></h2>
                         <div class="element-description">
-                            <p>Our premium concierge services offer clients and their guests a seamless experience when
+                            <p><span lang="en">Our premium concierge services offer clients and their guests a seamless experience when
                                 they visit Los Cabos. Clients have access to our network of service providers to cater
-                                to any of their needs:</p>
+                                to any of their needs:</span><span lang="es">Nuestros servicios premium de concierge ofrecen a los clientes y sus invitados una experiencia sin contratiempos cuando
+                                visitan Los Cabos. Los clientes tienen acceso a nuestra red de proveedores de servicios para atender
+                                cualquiera de sus necesidades:</span></p>
                             <ul class="list">
                                 <li><span class="bullet"></span><span
-                                        class="text color">24-hour emergency contact</span></li>
-                                <li><span class="bullet"></span><span class="text color">Pre-arrival preparations for owners and guests</span>
+                                        class="text color"><span lang="en">24-hour emergency contact</span><span lang="es">Contacto de emergencia las 24 horas</span></span></li>
+                                <li><span class="bullet"></span><span class="text color"><span lang="en">Pre-arrival preparations for owners and guests</span><span lang="es">Preparativos previos a la llegada para propietarios e invitados</span></span>
                                 </li>
-                                <li><span class="bullet"></span><span class="text color">Stocking of food and gourmet items</span>
+                                <li><span class="bullet"></span><span class="text color"><span lang="en">Stocking of food and gourmet items</span><span lang="es">Abastecimiento de alimentos y artículos gourmet</span></span>
                                 </li>
-                                <li><span class="bullet"></span><span class="text color">Night inspections</span></li>
+                                <li><span class="bullet"></span><span class="text color"><span lang="en">Night inspections</span><span lang="es">Inspecciones nocturnas</span></span></li>
                                 <li><span class="bullet"></span><span
-                                        class="text color">Transportation to/from airport</span></li>
-                                <li><span class="bullet"></span><span class="text color">Concierge services for activities and special events</span>
+                                        class="text color"><span lang="en">Transportation to/from airport</span><span lang="es">Transporte hacia/desde el aeropuerto</span></span></li>
+                                <li><span class="bullet"></span><span class="text color"><span lang="en">Concierge services for activities and special events</span><span lang="es">Servicios de concierge para actividades y eventos especiales</span></span>
                                 </li>
-                                <li><span class="bullet"></span><span class="text color">Check-in and check-out for vacation renters and inspection, if required and if agreed</span>
+                                <li><span class="bullet"></span><span class="text color"><span lang="en">Check-in and check-out for vacation renters and inspection, if required and if agreed</span><span lang="es">Check-in y check-out para inquilinos vacacionales e inspección, si es requerido y acordado</span></span>
                                 </li>
                                 <li><span class="bullet"></span><span
-                                        class="text color">Rent payment collection service</span></li>
+                                        class="text color"><span lang="en">Rent payment collection service</span><span lang="es">Servicio de cobro de pagos de renta</span></span></li>
                             </ul>
                         </div>
                     </div>
@@ -260,12 +308,14 @@
                 </div>
                 <div class="elements-container">
                     <div class="content">
-                        <h2 class="element-title">Real Estate Consulting Services</h2>
+                        <h2 class="element-title"><span lang="en">Real Estate Consulting Services</span><span lang="es">Servicios de Consultoría Inmobiliaria</span></h2>
                         <div class="element-description">
-                            <p>We offer expert real estate consulting services, including advice, detailed reports,
+                            <p><span lang="en">We offer expert real estate consulting services, including advice, detailed reports,
                                 closing services, coordinating transfer of property title, liaising with all parties,
                                 managing permits, certificates, appraisals, inspections, and other necessary
-                                logistics.</p>
+                                logistics.</span><span lang="es">Ofrecemos servicios expertos de consultoría inmobiliaria, incluyendo asesoría, informes detallados,
+                                servicios de cierre, coordinación de transferencia de título de propiedad, enlace con todas las partes,
+                                gestión de permisos, certificados, avalúos, inspecciones y otras logísticas necesarias.</span></p>
                         </div>
                     </div>
                     <div class="image image-repairs"><img class="desktop"
@@ -277,8 +327,8 @@
         </div>
     </div>
     <div class="clear"></div>
-</div>
-<div class="footer-container">
+</main>
+<footer class="footer-container">
     <div class="footer-inner max-width">
         <div class="footer-flex-container mobile-wrap">
             <div class="footer-flex-container logo-container">
@@ -287,24 +337,26 @@
                                                                                   alt="Avalos Arquitectos" width="100"
                                                                                   height="100" class="main-logo"/></a>
                     </div>
-                    <div class="motto">“We do not design spaces.<br/>We create lifestyles.”</div>
+                    <div class="motto"><span lang="en">"We do not design spaces.<br/>We create lifestyles."</span><span lang="es">"No diseñamos espacios.<br/>Creamos estilos de vida."</span></div>
                 </div>
 
             </div>
             <div class="footer-flex-container middle-container">
                 <div class="footer-item">
-                    <div class="footer-item-title">Sitemap</div>
+                    <div class="footer-item-title"><span lang="en">Sitemap</span><span lang="es">Mapa del sitio</span></div>
+                    <nav aria-label="Footer navigation">
                     <div class="footer-item-links">
                         <ul class="link-list">
-                            <li><a href="/projects">Projects</a></li>
-                            <li><a href="/services">Services</a></li>
-                            <li><a href="/about">About</a></li>
-                            <li><a href="/contact">Contact</a></li>
+                            <li><a href="/projects"><span lang="en">Projects</span><span lang="es">Proyectos</span></a></li>
+                            <li><a href="/services"><span lang="en">Services</span><span lang="es">Servicios</span></a></li>
+                            <li><a href="/about"><span lang="en">About</span><span lang="es">Nosotros</span></a></li>
+                            <li><a href="/contact"><span lang="en">Contact</span><span lang="es">Contacto</span></a></li>
                         </ul>
                     </div>
+                    </nav>
                 </div>
                 <div class="footer-item">
-                    <div class="footer-item-title">Find us</div>
+                    <div class="footer-item-title"><span lang="en">Find us</span><span lang="es">Encuéntranos</span></div>
                     <div class="link">
                         <a href="https://maps.app.goo.gl/d9BxKSN5XKhLBRo56" target="_blank" rel="nofollow">
                             Camino del Pedernal 160<br/>Pedregal<br/>Cabo San Lucas<br/>Baja California Sur<br/>CP 23453<br/>Mexico
@@ -314,13 +366,13 @@
             </div>
             <div class="footer-flex-container">
                 <div class="footer-item">
-                    <div class="footer-item-title">Phone</div>
+                    <div class="footer-item-title"><span lang="en">Phone</span><span lang="es">Teléfono</span></div>
                     <div class="footer-item-links">
                         <ul class="link-list">
                             <li><a href="tel:+526241431440">+52 (624) 143.1440</a></li>
                         </ul>
                     </div>
-                    <div class="footer-item-title">Jacinto Avalos and potential projects:</div>
+                    <div class="footer-item-title"><span lang="en">Jacinto Avalos and potential projects:</span><span lang="es">Jacinto Avalos y proyectos potenciales:</span></div>
                     <div class="footer-item-links">
                         <ul class="link-list">
                             <li><span id="e696816253"></span>
@@ -329,7 +381,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="footer-item-title">General, press, and employment inquiries:</div>
+                    <div class="footer-item-title"><span lang="en">General, press, and employment inquiries:</span><span lang="es">Consultas generales, prensa y empleo:</span></div>
                     <div class="link">
                         <span id="e271235684"></span>
                         <script type="text/javascript">/*<![CDATA[*/
@@ -340,7 +392,8 @@
         </div>
         <div class="footer-copyright">&copy; 2026 Avalos Arquitectos y Asociados, S.C.</div>
     </div>
-</div>
+</footer>
+<script src="/js/enhancements.js"></script>
 <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516"
         integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg=="
         data-cf-beacon='{"version":"2024.11.0","token":"eaabd9cafe2547278f1816f304779694","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
