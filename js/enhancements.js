@@ -184,11 +184,11 @@
         var tabContents = document.querySelectorAll('.page-services .tab-content');
 
         tabs.forEach(function (tab, i) {
-            var tabId = 'service-tab-' + i;
-            var panelId = tabContents[i] ? 'service-panel-' + i : null;
+            var tabId = tab.id || 'service-tab-' + i;
+            var panelId = tabContents[i] ? tabContents[i].id : null;
 
             tab.setAttribute('role', 'tab');
-            tab.setAttribute('id', tabId);
+            if (!tab.id) tab.setAttribute('id', tabId);
             tab.setAttribute('aria-selected', tab.classList.contains('active') ? 'true' : 'false');
             if (panelId) {
                 tab.setAttribute('aria-controls', panelId);
@@ -197,7 +197,6 @@
 
             if (tabContents[i]) {
                 tabContents[i].setAttribute('role', 'tabpanel');
-                tabContents[i].setAttribute('id', panelId);
                 tabContents[i].setAttribute('aria-labelledby', tabId);
             }
         });

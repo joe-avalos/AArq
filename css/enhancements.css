@@ -112,6 +112,24 @@ a:hover {
     background: var(--color-header-home-bg) !important;
 }
 
+/* Gradient scrim behind homepage header for text readability over slider images */
+.header-container.home::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.15) 60%, transparent 100%);
+    pointer-events: none;
+    z-index: 0;
+}
+
+.header-container.home .header-inner {
+    position: relative;
+    z-index: 1;
+}
+
 .header-container .header-inner .logo img {
     filter: var(--color-logo-filter);
 }
@@ -138,6 +156,7 @@ a:hover {
 /* Home nav (white links on transparent header) */
 .header-container .header-inner .nav-container .navigation.home .list > li > a {
     color: var(--color-nav-home-link) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .header-container .header-inner .nav-container .navigation.home .list li a:after {
@@ -248,6 +267,15 @@ a:hover {
 }
 
 /* Projects listing */
+.wrapper-container .page-projects .tab-container .tabs .tab-link,
+.wrapper-container .page-services .tab-container .tabs .tab-link {
+    background: none;
+    border: none;
+    padding: 0;
+    font: inherit;
+    cursor: pointer;
+}
+
 .wrapper-container .page-projects .tab-container .tabs .tab-link {
     color: var(--color-text-secondary);
 }
@@ -266,6 +294,10 @@ a:hover {
 }
 
 /* Services */
+.wrapper-container .page-services .tab-container {
+    max-width: 520px;
+}
+
 .wrapper-container .page-services .tab-container .tabs .tab-link {
     color: var(--color-text-secondary);
 }
@@ -559,7 +591,8 @@ html[lang="es"] [lang="en"] {
 /* Home page toolbar — lighter colors */
 .header-container.home .lang-toggle,
 .header-container.home .theme-toggle {
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.8);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
 }
 
 .header-container.home .lang-toggle:hover,
