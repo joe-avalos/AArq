@@ -294,6 +294,10 @@ a:hover {
 }
 
 /* Services */
+.wrapper-container .page-services .tab-container {
+    max-width: 520px;
+}
+
 .wrapper-container .page-services .tab-container .tabs .tab-link {
     color: var(--color-text-secondary);
 }
