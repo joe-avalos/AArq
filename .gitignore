@@ -4,3 +4,5 @@ CLAUDE.md
 review-en.md
 review-es.md
 server.js
+*.json
+!.prettierrc
