@@ -21,7 +21,7 @@
 ---
 
 ## `index.html` (Homepage)
-> Path: /Users/josebavalos/WebStormProjects/AArq/index.html
+> Path: ./index.html
 
 - **Carousel aria-labels** (~lines 101-144): "Architectural project by Avalos Arquitectos" (repeated 15 times on slider items)
 
@@ -30,7 +30,7 @@ No other page-specific English `lang="en"` text. The homepage is a fullscreen im
 ---
 
 ## `about/index.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/about/index.html
+> Path: ./about/index.html
 
 - **Page title h1** (~line 99): "About"
 - **About intro paragraph** (~line 101-111): "Avalos Arquitectos y Asociados, S.C. is an architecture, design, engineering, and construction firm. With over 40 years of experience, our team has earned an international reputation for high quality design and creative excellence. We are responsible for some of the most thoughtful, progressive, and award-winning structures in Mexico's cities of Cabo San Lucas, San Jose del Cabo, La Paz, Mexico City, Loreto, Puebla, San Miguel de Allende, and Hermosillo, as well as in Spain and the United States."
@@ -80,7 +80,7 @@ No other page-specific English `lang="en"` text. The homepage is a fullscreen im
 ---
 
 ## `contact/index.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/contact/index.html
+> Path: ./contact/index.html
 
 - **Page title h1** (~line 97): "Contact"
 - **Contact label 1** (~line 102): "Jacinto Avalos and potential projects:"
@@ -91,7 +91,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/index.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/index.html
+> Path: ./projects/index.html
 
 - **Page title h1** (~line 98): "Our Projects"
 - **Filter tab: All** (~line 102): "All"
@@ -104,7 +104,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/casa-alcaravan.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/casa-alcaravan.html
+> Path: ./projects/casa-alcaravan.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -119,7 +119,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/casa-chileno.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/casa-chileno.html
+> Path: ./projects/casa-chileno.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -135,7 +135,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/casa-clark.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/casa-clark.html
+> Path: ./projects/casa-clark.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -149,7 +149,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/casa-dos-hermanas.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/casa-dos-hermanas.html
+> Path: ./projects/casa-dos-hermanas.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -163,7 +163,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/casa-grillo.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/casa-grillo.html
+> Path: ./projects/casa-grillo.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -179,7 +179,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/casa-serena.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/casa-serena.html
+> Path: ./projects/casa-serena.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -195,7 +195,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/casa-turca.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/casa-turca.html
+> Path: ./projects/casa-turca.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -210,7 +210,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/villa-bellisima.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/villa-bellisima.html
+> Path: ./projects/villa-bellisima.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -225,7 +225,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/villa-dulce.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/villa-dulce.html
+> Path: ./projects/villa-dulce.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -241,7 +241,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/hotel-catedral.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/hotel-catedral.html
+> Path: ./projects/hotel-catedral.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Commercial"
@@ -255,7 +255,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/parroquia-cristo-redentor.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/parroquia-cristo-redentor.html
+> Path: ./projects/parroquia-cristo-redentor.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Places of Worship"
@@ -270,7 +270,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/teatro-miguel-lomeli-cesena.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/teatro-miguel-lomeli-cesena.html
+> Path: ./projects/teatro-miguel-lomeli-cesena.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Arts & Culture"
@@ -284,7 +284,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `projects/aaa-office.html`
-> Path: /Users/josebavalos/WebStormProjects/AArq/projects/aaa-office.html
+> Path: ./projects/aaa-office.html
 
 - **Back button** (~line 102): "Back to projects"
 - **Subtitle** (~line 104): "Residential"
@@ -298,7 +298,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `services/index.html` (Design tab)
-> Path: /Users/josebavalos/WebStormProjects/AArq/services/index.html
+> Path: ./services/index.html
 
 - **Page title h1** (~line 102): "Services"
 - **Subtitle paragraph** (~lines 103-105): "We are driven by experience, collaboration, and the belief that thoughtful design supports living life to its fullest."
@@ -320,7 +320,7 @@ No other page-specific English text beyond shared elements. Address and phone nu
 ---
 
 ## `services/construction.html` (Construction tab)
-> Path: /Users/josebavalos/WebStormProjects/AArq/services/construction.html
+> Path: ./services/construction.html
 
 Identical content to `services/index.html`. The construction-specific content:
 
@@ -331,12 +331,12 @@ Identical content to `services/index.html`. The construction-specific content:
 - **General Contractor p2** (~lines 212-220): "We only engage trusted, experienced professionals who can perform the work on time, on budget, and at or above expected levels of quality. We review all contracts, including scope of work and fees. Construction includes coordination, supervision, and management of all activities related to the development of architectural projects, as well as all structural components and installations, and technical aspects of construction."
 - **General Contractor p3** (~lines 221-223): "We remain highly engaged throughout the process to ensure conformity to owner-approved plans and goals."
 - **Section heading: Project Development** (~line 231): "Project Development"
-- **Project Development p1** (~lines 233-246): "We define in detail and with precision all the functional and formal aspects of the preliminary design with specific technical and budget solutions, the final construction plans and designs, and also anticipate any required future plans. Our project development work will consider all relevant federal, state and municipal codes as well as local community restrictions. Project development may also include the different engineering services our team provides: structural and civil engineering; electrical and lighting; plumbing; air conditioning and propane installations; video, sound, and data."
+- **Project Development p1** (~lines 233-246): "We define in detail and with precision all the functional and formal aspects of the preliminary design with specific technical and budget solutions, the final construction plans and designs, and also anticipate any required future plans. Our project development work will consider all relevant federal, state, and municipal codes as well as local community restrictions. Project development may also include the different engineering services our team provides: structural and civil engineering; electrical and lighting; plumbing; air conditioning and propane installations; video, sound, and data."
 
 ---
 
 ## `services/property-management.html` (Property Management tab)
-> Path: /Users/josebavalos/WebStormProjects/AArq/services/property-management.html
+> Path: ./services/property-management.html
 
 Identical content to `services/index.html`. The property-management-specific content:
 
