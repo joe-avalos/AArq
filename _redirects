@@ -1,0 +1,9 @@
+# Proxy original site assets (images, CSS, JS)
+/public/*           https://avalosarquitectos.com/public/:splat  200
+
+# Proxy favicons and manifest from original site
+/apple-touch-icon.png   https://avalosarquitectos.com/apple-touch-icon.png  200
+/favicon-32x32.png      https://avalosarquitectos.com/favicon-32x32.png  200
+/favicon-16x16.png      https://avalosarquitectos.com/favicon-16x16.png  200
+/site.webmanifest       https://avalosarquitectos.com/site.webmanifest  200
+/safari-pinned-tab.svg  https://avalosarquitectos.com/safari-pinned-tab.svg  200
