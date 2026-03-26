@@ -1,0 +1,390 @@
+---
+import { ui } from '../i18n/ui';
+import ThemeToggle from './ThemeToggle.astro';
+import LanguageToggle from './LanguageToggle.astro';
+
+interface Props {
+  active?: 'projects' | 'services' | 'about' | 'contact';
+  variant?: 'home' | 'page';
+}
+
+const { active, variant = 'page' } = Astro.props;
+const t = ui;
+---
+
+<a href="#main-content" class="skip-nav">
+  <span lang="en">{t.en.skip_to_main}</span><span lang="es">{t.es.skip_to_main}</span>
+</a>
+
+<header class={`site-header${variant === 'home' ? ' header-home' : ''}`}>
+  <div class="header-inner">
+    <a href="/" class="logo-link" title="Avalos Arquitectos">
+      <img
+        src="https://avalosarquitectos.com/public/images/logo.jpeg"
+        alt="Avalos Arquitectos"
+        width="50"
+        height="50"
+        loading="eager"
+        class="logo-img"
+      />
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <ul class="nav-list">
+        <li>
+          <a href="/projects/" class={active === 'projects' ? 'active' : undefined}>
+            <span lang="en">{t.en.nav_projects}</span><span lang="es">{t.es.nav_projects}</span>
+          </a>
+        </li>
+        <li class="has-dropdown">
+          <a href="/services/" class={active === 'services' ? 'active' : undefined}>
+            <span lang="en">{t.en.nav_services}</span><span lang="es">{t.es.nav_services}</span>
+          </a>
+          <ul class="dropdown">
+            <li>
+              <a href="/services/#design">
+                <span lang="en">{t.en.nav_services_design}</span><span lang="es">{t.es.nav_services_design}</span>
+              </a>
+            </li>
+            <li>
+              <a href="/services/#construction">
+                <span lang="en">{t.en.nav_services_construction}</span><span lang="es">{t.es.nav_services_construction}</span>
+              </a>
+            </li>
+            <li>
+              <a href="/services/#property-management">
+                <span lang="en">{t.en.nav_services_property}</span><span lang="es">{t.es.nav_services_property}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li class="has-dropdown">
+          <a href="/about/" class={active === 'about' ? 'active' : undefined}>
+            <span lang="en">{t.en.nav_about}</span><span lang="es">{t.es.nav_about}</span>
+          </a>
+          <ul class="dropdown">
+            <li>
+              <a href="/about/#history">
+                <span lang="en">{t.en.about_history}</span><span lang="es">{t.es.about_history}</span>
+              </a>
+            </li>
+            <li>
+              <a href="/about/#mission">
+                <span lang="en">{t.en.about_mission}</span><span lang="es">{t.es.about_mission}</span>
+              </a>
+            </li>
+            <li>
+              <a href="/about/#philosophy">
+                <span lang="en">{t.en.about_philosophy}</span><span lang="es">{t.es.about_philosophy}</span>
+              </a>
+            </li>
+            <li>
+              <a href="/about/#team">
+                <span lang="en">{t.en.about_team}</span><span lang="es">{t.es.about_team}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <li>
+          <a href="/contact/" class={active === 'contact' ? 'active' : undefined}>
+            <span lang="en">{t.en.nav_contact}</span><span lang="es">{t.es.nav_contact}</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header-actions">
+      <LanguageToggle />
+      <ThemeToggle />
+      <button
+        class="hamburger"
+        type="button"
+        aria-expanded="false"
+        aria-label={t.en.menu_open}
+        data-label-open={t.en.menu_open}
+        data-label-close={t.en.menu_close}
+      >
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<style>
+  /* === Skip nav === */
+  .skip-nav {
+    position: absolute;
+    top: -100%;
+    left: var(--space-sm);
+    background: var(--color-surface);
+    color: var(--color-text);
+    padding: var(--space-xs) var(--space-sm);
+    font-size: var(--text-sm);
+    text-decoration: none;
+    z-index: 200;
+    border: var(--border-thin);
+    transition: top 0.2s ease;
+  }
+  .skip-nav:focus {
+    top: var(--space-xs);
+  }
+
+  /* === Base header === */
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: var(--color-bg);
+    border-bottom: var(--border-thin);
+  }
+
+  /* === Home variant — transparent with gradient scrim === */
+  .header-home {
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.35) 70%, transparent 100%);
+    border-bottom: none;
+  }
+
+  /* === Inner layout === */
+  .header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+    height: var(--header-height);
+  }
+
+  /* === Logo === */
+  .logo-link {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+  .logo-img {
+    width: 50px;
+    height: 50px;
+    object-fit: contain;
+    display: block;
+  }
+
+  /* === Nav === */
+  .main-nav {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .nav-list a {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .nav-list a:hover,
+  .nav-list a.active {
+    color: var(--color-text);
+  }
+
+  /* Home variant — white nav links with text-shadow for contrast on any image */
+  .header-home .nav-list a {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+  .header-home .nav-list a:hover,
+  .header-home .nav-list a.active {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  /* === Services dropdown === */
+  .has-dropdown {
+    position: static;
+  }
+
+  .dropdown {
+    display: none;
+    position: absolute;
+    top: calc(var(--header-height) + 1px);
+    min-width: 220px;
+    background: var(--color-bg);
+    border: var(--border-thin);
+    border-top: none;
+    list-style: none;
+    margin: 0;
+    padding: var(--space-xs) 0;
+    z-index: 110;
+  }
+
+  .dropdown li {
+    display: block;
+  }
+
+  .dropdown a {
+    display: block;
+    padding: var(--space-xs) var(--space-sm);
+    color: var(--color-text-secondary) !important;
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    white-space: nowrap;
+  }
+
+  .dropdown a:hover {
+    color: var(--color-text) !important;
+  }
+
+  /* Bridge hover gap between nav link and dropdown */
+  .dropdown::before {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    right: 0;
+    height: calc(var(--header-height) / 2);
+  }
+
+  .has-dropdown:hover .dropdown {
+    display: block;
+  }
+
+  /* Home variant — dropdown matches dark scrim */
+  .header-home .dropdown {
+    background: rgba(0, 0, 0, 0.55);
+    border-color: transparent;
+  }
+
+  .header-home .dropdown a {
+    color: rgba(255, 255, 255, 0.85) !important;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+  }
+
+  .header-home .dropdown a:hover {
+    color: rgba(255, 255, 255, 1) !important;
+  }
+
+  /* === Header actions === */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-xs);
+    flex-shrink: 0;
+  }
+
+  /* === Hamburger === */
+  .hamburger {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--space-xs);
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .hamburger-line {
+    display: block;
+    width: 20px;
+    height: 2px;
+    background: var(--color-text);
+    transition: background 0.2s ease;
+  }
+
+  .header-home .hamburger-line {
+    background: #ffffff;
+    filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+  }
+
+  /* === Mobile === */
+  @media (max-width: 768px) {
+    .hamburger {
+      display: flex;
+    }
+
+    .main-nav {
+      display: none;
+      position: absolute;
+      top: var(--header-height);
+      left: 0;
+      right: 0;
+      background: var(--color-bg);
+      border-bottom: var(--border-thin);
+      padding: var(--space-sm) var(--space-md);
+    }
+
+    .main-nav.nav-open {
+      display: flex;
+    }
+
+    .nav-list {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+      width: 100%;
+    }
+
+    .nav-list li {
+      width: 100%;
+    }
+
+    .nav-list a {
+      display: block;
+      padding: var(--space-xs) 0;
+    }
+
+    /* Inline dropdown on mobile */
+    .dropdown {
+      display: block;
+      position: static;
+      border: none;
+      background: none;
+      padding: 0 0 0 var(--space-sm);
+      min-width: unset;
+    }
+
+    .dropdown a {
+      padding: 0.25rem 0;
+    }
+  }
+</style>
+
+<script>
+  const hamburger = document.querySelector('.hamburger') as HTMLButtonElement | null;
+  const nav = document.querySelector('.main-nav') as HTMLElement | null;
+  if (hamburger && nav) {
+    hamburger.addEventListener('click', () => {
+      const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
+      hamburger.setAttribute('aria-expanded', String(!isOpen));
+      nav.classList.toggle('nav-open', !isOpen);
+    });
+
+    // Close menu when any nav link is clicked (including dropdown items)
+    nav.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        hamburger.setAttribute('aria-expanded', 'false');
+        nav.classList.remove('nav-open');
+      });
+    });
+  }
+</script>

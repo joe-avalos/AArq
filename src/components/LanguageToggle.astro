@@ -1,0 +1,32 @@
+<button
+  class="lang-toggle"
+  type="button"
+  aria-label="Cambiar a español"
+>
+  ES
+</button>
+
+<style>
+  .lang-toggle {
+    background: none;
+    border: 1px solid var(--color-border);
+    color: var(--color-text);
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    font-size: var(--text-xs);
+    font-family: var(--font-body);
+    font-weight: var(--font-weight-medium);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    transition: all 0.2s ease;
+  }
+  .lang-toggle:hover {
+    color: var(--color-accent);
+    border-color: var(--color-accent);
+  }
+</style>
+
+<script>
+  import { initLangToggle } from '../js/lang-toggle.js';
+  initLangToggle();
+</script>

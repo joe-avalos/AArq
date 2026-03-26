@@ -1,0 +1,58 @@
+:root {
+  /* === TYPOGRAPHY === */
+  --font-heading: 'Hanken Grotesk', sans-serif;
+  --font-body: 'Hanken Grotesk', sans-serif;
+  --font-weight-light: 300;
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+
+  /* === TYPE SCALE (fluid) === */
+  --text-xs: clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem);
+  --text-sm: clamp(0.875rem, 0.8rem + 0.35vw, 1rem);
+  --text-base: clamp(1rem, 0.9rem + 0.5vw, 1.125rem);
+  --text-lg: clamp(1.25rem, 1rem + 1vw, 1.5rem);
+  --text-xl: clamp(1.5rem, 1rem + 2vw, 2.5rem);
+  --text-hero: clamp(2.5rem, 1.5rem + 4vw, 4.5rem);
+
+  /* === SPACING SCALE === */
+  --space-xs: 0.5rem;
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+  --space-xl: 8rem;
+
+  /* === LIGHT MODE COLORS === */
+  --color-bg: #fafaf8;
+  --color-surface: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-secondary: #666666;
+  --color-accent: #003263;
+  --color-accent-hover: #0C44AF;
+  --color-border: #e0ddd8;
+  --color-footer-bg: #f0eeeb;
+
+  /* === LAYOUT === */
+  --max-width: 1200px;
+  --header-height: 4rem;
+  --border-thin: 1px solid var(--color-border);
+}
+
+/* === MOBILE SPACING REDUCTION === */
+@media (max-width: 768px) {
+  :root {
+    --space-md: 1.25rem;
+    --space-lg: 2rem;
+    --space-xl: 3.5rem;
+  }
+}
+
+[data-theme="dark"] {
+  --color-bg: #121212;
+  --color-surface: #1e1e1e;
+  --color-text: #e8dfd3;
+  --color-text-secondary: #a8a29e;
+  --color-accent: #c4a87c;
+  --color-accent-hover: #d4b88c;
+  --color-border: #2a2520;
+  --color-footer-bg: #0a0a0a;
+}

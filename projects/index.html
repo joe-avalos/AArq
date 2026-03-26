@@ -377,28 +377,30 @@
                 </div>
             </div>
             <script>
-                var containerEl = document.querySelector(".container");
+                document.addEventListener("DOMContentLoaded", function () {
+                    var containerEl = document.querySelector(".container");
 
-                var mixer = mixitup(containerEl, {
-                    callbacks: {
-                        onMixEnd: function () {
-                            var win = $(window);
-                            var allMods = $(".mix.item");
+                    var mixer = mixitup(containerEl, {
+                        callbacks: {
+                            onMixEnd: function () {
+                                var win = $(window);
+                                var allMods = $(".mix.item");
 
-                            // Already visible modules
-                            allMods.each(function (i, el) {
-                                var el = $(el);
-                                if (el.visible(true)) {
-                                    el.addClass("already-visible");
-                                }
-                            });
+                                // Already visible modules
+                                allMods.each(function (i, el) {
+                                    var el = $(el);
+                                    if (el.visible(true)) {
+                                        el.addClass("already-visible");
+                                    }
+                                });
 
-                            $(".lazy").lazy({
-                                bind: "event",
-                                delay: 0,
-                            });
+                                $(".lazy").lazy({
+                                    bind: "event",
+                                    delay: 0,
+                                });
+                            },
                         },
-                    },
+                    });
                 });
             </script>
             <div class="clear"></div>

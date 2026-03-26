@@ -1,0 +1,97 @@
+---
+import '../styles/theme.css';
+import '../styles/global.css';
+import '../styles/utilities.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogImage?: string;
+  preloadImage?: string;
+  lang?: 'en' | 'es';
+}
+
+const {
+  title,
+  description,
+  ogImage = 'https://avalosarquitectos.com/public/images/logo.jpeg',
+  preloadImage,
+  lang = 'en',
+} = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+---
+
+<!DOCTYPE html>
+<html lang={lang}>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  {/* FOUC prevention — must run before first paint */}
+  <script is:inline>
+    (function() {
+      var t = localStorage.getItem('theme');
+      if (t === 'dark' || (t !== 'light' && matchMedia('(prefers-color-scheme:dark)').matches))
+        document.documentElement.dataset.theme = 'dark';
+      var l = localStorage.getItem('lang');
+      if (l === 'es') document.documentElement.lang = 'es';
+      if (l === 'en') document.documentElement.lang = 'en';
+    })();
+  </script>
+
+  <title>{title} | Avalos Arquitectos y Asociados</title>
+  <meta name="description" content={description}>
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href={canonicalURL}>
+
+  {/* Open Graph */}
+  <meta property="og:title" content={title}>
+  <meta property="og:description" content={description}>
+  <meta property="og:image" content={ogImage}>
+  <meta property="og:url" content={canonicalURL.toString()}>
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content={lang === 'es' ? 'es_MX' : 'en_US'}>
+  <meta property="og:locale:alternate" content={lang === 'es' ? 'en_US' : 'es_MX'}>
+  <meta property="og:site_name" content="Avalos Arquitectos y Asociados">
+
+  {/* Twitter Card */}
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content={title}>
+  <meta name="twitter:description" content={description}>
+  <meta name="twitter:image" content={ogImage}>
+
+  {/* Preload primary font weight */}
+  <link rel="preload" href="/fonts/hanken-grotesk-400.woff2" as="font" type="font/woff2" crossorigin>
+
+  {/* Per-page image preload */}
+  {preloadImage && <link rel="preload" href={preloadImage} as="image">}
+
+  {/* Structured data — site-wide */}
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ArchitecturalFirm",
+    "name": "Avalos Arquitectos y Asociados",
+    "url": "https://avalosarquitectos.com",
+    "logo": "https://avalosarquitectos.com/public/images/logo.jpeg",
+    "description": "Architecture firm in Cabo San Lucas, B.C.S., Mexico. Over 40 years of residential, commercial, and cultural projects.",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Pedregal",
+      "addressLocality": "Cabo San Lucas",
+      "addressRegion": "B.C.S.",
+      "addressCountry": "MX"
+    },
+    "telephone": "+52-624-143-1440",
+    "email": "info@avalosarquitectos.com",
+    "foundingDate": "1991",
+    "areaServed": ["Los Cabos, Baja California Sur, Mexico", "Mexico", "California, USA", "Canary Islands, Spain"],
+    "sameAs": []
+  })} />
+
+  <slot name="head" />
+</head>
+<body>
+  <slot />
+</body>
+</html>

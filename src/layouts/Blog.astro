@@ -1,0 +1,96 @@
+---
+import Page from './Page.astro';
+import { ui } from '../i18n/ui';
+
+interface Props {
+  title: string;
+  description: string;
+  date: Date;
+}
+
+const { title, description, date } = Astro.props;
+const formattedDate = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<Page title={title} description={description}>
+  <article class="section container blog-post">
+    <a href="/blog/" class="back-link">
+      <span lang="en">&larr; {ui.en.back_to_blog}</span>
+      <span lang="es">&larr; {ui.es.back_to_blog}</span>
+    </a>
+    <h1>{title}</h1>
+    <time datetime={date.toISOString()}>{formattedDate}</time>
+    <div class="blog-content">
+      <slot />
+    </div>
+  </article>
+</Page>
+
+<style>
+  .blog-post {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-md, 1.5rem);
+    padding-block: var(--space-xl, 3rem) var(--space-2xl, 4rem);
+  }
+
+  .back-link {
+    display: inline-block;
+    font-size: 0.8rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary, #6b7280);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease, color 0.2s ease;
+    margin-block-end: var(--space-xl, 3rem);
+  }
+
+  .back-link:hover,
+  .back-link:focus-visible {
+    color: var(--color-text-primary);
+    border-color: var(--color-text-primary);
+  }
+
+  h1 {
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    line-height: 1.2;
+    color: var(--color-text-primary);
+    margin-block: 0 var(--space-sm, 0.75rem);
+  }
+
+  time {
+    display: block;
+    font-size: 0.85rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary, #6b7280);
+    margin-block-end: var(--space-xl, 3rem);
+  }
+
+  .blog-content {
+    max-width: 72ch;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: var(--color-text-secondary, #6b7280);
+  }
+
+  .blog-content :global(h2),
+  .blog-content :global(h3) {
+    font-weight: 400;
+    letter-spacing: 0.03em;
+    color: var(--color-text-primary);
+    margin-block: var(--space-xl, 3rem) var(--space-md, 1.5rem);
+  }
+
+  .blog-content :global(p) {
+    margin-block-end: var(--space-md, 1.5rem);
+  }
+
+  .blog-content :global(a) {
+    color: var(--color-text-primary);
+    text-underline-offset: 3px;
+  }
+</style>

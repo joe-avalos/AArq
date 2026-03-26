@@ -4,3 +4,10 @@ CLAUDE.md
 server.js
 *.json
 !.prettierrc
+!package.json
+!package-lock.json
+!tsconfig.json
+node_modules/
+dist/
+.astro/
+.superpowers/
