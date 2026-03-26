@@ -1,0 +1,35 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import ProjectGrid from '../../components/ProjectGrid.astro';
+import { ui } from '../../i18n/ui';
+
+const projects = await getCollection('projects');
+const sorted = projects.sort((a, b) => (a.data.order ?? 99) - (b.data.order ?? 99));
+---
+
+<Page
+  title="Our Projects"
+  description="Residential, commercial, and cultural architecture projects by Avalos Arquitectos in Cabo San Lucas"
+  active="projects"
+>
+  <section class="section container">
+    <h1>
+      <span lang="en">{ui.en.projects_title}</span>
+      <span lang="es">{ui.es.projects_title}</span>
+    </h1>
+    <ProjectGrid projects={sorted} />
+  </section>
+</Page>
+
+<style>
+  .section {
+    padding-block: var(--space-xl, 4rem);
+  }
+
+  h1 {
+    font-size: var(--text-3xl, 2.25rem);
+    font-weight: var(--font-weight-light, 300);
+    margin-bottom: var(--space-lg, 2.5rem);
+  }
+</style>

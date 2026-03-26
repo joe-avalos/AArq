@@ -1,0 +1,300 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import Carousel from '../../components/Carousel.astro';
+import { ui } from '../../i18n/ui';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { title, category, location, images, description, year, size, subtitle, body } = project.data;
+
+const firstImage = images[0]?.src;
+
+// Single parallax divider — random image from the gallery (skip first, it's the hero)
+const parallaxPool = images.length > 1 ? images.slice(1) : images;
+const parallaxIndex = Math.floor(Math.random() * parallaxPool.length);
+const parallaxSrc = parallaxPool[parallaxIndex]?.src;
+
+// Two text blocks: description (first paragraph) above parallax, rest below
+const descParagraph = { en: description.en, es: description.es };
+const remainingParagraphs = body || [];
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'ArchitectureProject',
+  name: title,
+  description: description.en,
+  image: firstImage,
+  locationCreated: {
+    '@type': 'Place',
+    name: location,
+  },
+  architect: {
+    '@type': 'ArchitecturalFirm',
+    name: 'Avalos Arquitectos y Asociados',
+  },
+};
+---
+
+<Page
+  title={title}
+  description={description.en}
+  ogImage={firstImage}
+  preloadImage={firstImage}
+  active="projects"
+>
+  <nav class="back-bar" aria-label="Back navigation">
+    <div class="container">
+      <a href="/projects/">
+        <span lang="en">&larr; {ui.en.back_to_projects}</span>
+        <span lang="es">&larr; {ui.es.back_to_projects}</span>
+      </a>
+    </div>
+  </nav>
+
+  <article class="project-detail">
+    <header class="project-header container">
+      <h1 class="project-title">{title}</h1>
+      {subtitle && (
+        <p class="project-subtitle">
+          <span lang="en">{subtitle.en}</span><span lang="es">{subtitle.es}</span>
+        </p>
+      )}
+      <div class="project-meta-grid">
+        <div class="meta-item">
+          <div class="meta-label">
+            <span lang="en">{ui.en.label_location}</span><span lang="es">{ui.es.label_location}</span>
+          </div>
+          <div class="meta-value">{location}</div>
+        </div>
+        {size && (
+          <div class="meta-item">
+            <div class="meta-label">
+              <span lang="en">{ui.en.label_size}</span><span lang="es">{ui.es.label_size}</span>
+            </div>
+            <div class="meta-value">
+              {size.lot} <span lang="en"> lot</span><span lang="es"> terreno</span>
+              {size.roof && <><br />{size.roof}<span lang="en"> under roof</span><span lang="es"> construcción</span></>}
+            </div>
+          </div>
+        )}
+        {year && (
+          <div class="meta-item">
+            <div class="meta-label">
+              <span lang="en">{ui.en.label_year}</span><span lang="es">{ui.es.label_year}</span>
+            </div>
+            <div class="meta-value">{year}</div>
+          </div>
+        )}
+      </div>
+    </header>
+
+    <section class="project-text container">
+      <p>
+        <span lang="en">{descParagraph.en}</span>
+        <span lang="es">{descParagraph.es}</span>
+      </p>
+    </section>
+
+    {parallaxSrc && (
+      <div
+        class="parallax-divider"
+        role="img"
+        aria-label={title}
+        style={`background-image: url(${parallaxSrc})`}
+      ></div>
+    )}
+
+    {remainingParagraphs.length > 0 && (
+      <section class="project-text container">
+        {remainingParagraphs.map((paragraph) => (
+          <p>
+            <span lang="en">{paragraph.en}</span>
+            <span lang="es">{paragraph.es}</span>
+          </p>
+        ))}
+      </section>
+    )}
+
+    <section class="project-gallery" aria-label={`${title} gallery`}>
+      <Carousel label={`${title} gallery`} autoplay={false} fullscreen={false}>
+        {images.map((image) => (
+          <div class="slide">
+            <img
+              src={image.src}
+              alt=""
+              aria-hidden="true"
+              loading="lazy"
+              decoding="async"
+            />
+            <span class="sr-only">
+              <span lang="en">{image.alt.en}</span>
+              <span lang="es">{image.alt.es}</span>
+            </span>
+          </div>
+        ))}
+      </Carousel>
+    </section>
+  </article>
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+</Page>
+
+<style>
+  /* ── Sticky back bar ── */
+  .back-bar {
+    position: sticky;
+    top: var(--header-height, 4rem);
+    z-index: 50;
+    background: var(--color-bg);
+    border-bottom: var(--border-thin, 1px solid #e0ddd8);
+    padding-block: var(--space-xs, 0.5rem);
+  }
+
+  .back-bar a {
+    font-size: var(--text-sm, 0.875rem);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-accent);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .back-bar a:hover {
+    opacity: 0.7;
+  }
+
+  /* ── Article ── */
+  .project-detail {
+    padding-bottom: var(--space-xl, 4rem);
+  }
+
+  /* ── Header ── */
+  .project-header {
+    padding-block: var(--space-lg, 2.5rem);
+  }
+
+  .project-title {
+    font-size: var(--text-hero, 2.5rem);
+    font-weight: var(--font-weight-light, 300);
+    margin-bottom: var(--space-xs, 0.5rem);
+    line-height: 1.15;
+  }
+
+  .project-subtitle {
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-text-secondary);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: var(--space-sm, 1rem);
+  }
+
+  .project-meta-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md, 1.5rem);
+    font-size: var(--text-sm, 0.875rem);
+    color: var(--color-text-secondary);
+  }
+
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.125rem;
+  }
+
+  .meta-label {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: var(--text-xs, 0.75rem);
+  }
+
+  .meta-value {
+    color: var(--color-text);
+    line-height: 1.4;
+  }
+
+  /* ── Text sections ── */
+  .project-text {
+    max-width: 72ch;
+    padding-block: var(--space-lg, 2.5rem);
+  }
+
+  .project-text p {
+    font-size: var(--text-base, 1rem);
+    line-height: 1.75;
+    color: var(--color-text);
+    margin-bottom: var(--space-sm, 1rem);
+  }
+
+  .project-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ── Parallax dividers ── */
+  .parallax-divider {
+    width: 100%;
+    min-height: 400px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+  }
+
+  @media (max-width: 768px) {
+    .parallax-divider {
+      min-height: 250px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .parallax-divider {
+      background-attachment: scroll;
+    }
+  }
+
+  /* ── Gallery at bottom ── */
+  .project-gallery {
+    margin-top: var(--space-lg, 2.5rem);
+    overflow: hidden;
+  }
+
+  .project-gallery :global(.carousel) {
+    height: clamp(280px, 60vh, 640px);
+    background: var(--color-surface, #f3f4f6);
+  }
+
+  .slide {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ── Screen reader only ── */
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+</style>

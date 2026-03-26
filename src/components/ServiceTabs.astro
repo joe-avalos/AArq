@@ -1,0 +1,102 @@
+---
+interface Tab {
+  id: string;
+  labelEn: string;
+  labelEs: string;
+  contentEn: string;
+  contentEs: string;
+}
+
+interface Props {
+  tabs: Tab[];
+}
+
+const { tabs } = Astro.props;
+---
+
+<div class="service-tabs">
+  <div role="tablist" class="tab-list" aria-label="Services">
+    {tabs.map((tab, i) => (
+      <button
+        type="button"
+        role="tab"
+        id={tab.id}
+        aria-selected={i === 0 ? 'true' : 'false'}
+        aria-controls={`panel-${tab.id}`}
+        tabindex={i === 0 ? '0' : '-1'}
+        class="tab-button"
+      >
+        <span lang="en">{tab.labelEn}</span>
+        <span lang="es">{tab.labelEs}</span>
+      </button>
+    ))}
+  </div>
+
+  {tabs.map((tab, i) => (
+    <div
+      role="tabpanel"
+      id={`panel-${tab.id}`}
+      aria-labelledby={tab.id}
+      class="tab-panel"
+      style={i === 0 ? 'display: block;' : 'display: none;'}
+      hidden={i !== 0 ? true : undefined}
+    >
+      <div lang="en" class="content-block" set:html={tab.contentEn} />
+      <div lang="es" class="content-block" set:html={tab.contentEs} />
+    </div>
+  ))}
+</div>
+
+<style>
+  .service-tabs {
+    width: 100%;
+  }
+
+  .tab-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+    margin-bottom: 0;
+  }
+
+  .tab-button {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: var(--space-sm, 0.75rem) var(--space-md, 1.5rem);
+    margin-bottom: -1px;
+    font-size: var(--text-sm, 0.875rem);
+    font-family: inherit;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted, #6b7280);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .tab-button:hover {
+    color: var(--color-text, #111827);
+  }
+
+  .tab-button[aria-selected='true'] {
+    color: var(--color-text, #111827);
+    border-bottom-color: var(--color-accent, #8b6f47);
+  }
+
+  .tab-button:focus-visible {
+    outline: 2px solid var(--color-accent, #8b6f47);
+    outline-offset: 2px;
+  }
+
+  .tab-panel {
+    padding-top: var(--space-xl, 4rem);
+  }
+</style>
+
+<script>
+  import { initTabs } from '../js/tabs.js';
+  const container = document.querySelector('.service-tabs');
+  if (container) initTabs(container as HTMLElement);
+</script>

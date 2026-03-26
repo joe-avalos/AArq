@@ -1,0 +1,304 @@
+---
+import { getCollection, render } from 'astro:content';
+import Page from '../../layouts/Page.astro';
+import ServiceTabs from '../../components/ServiceTabs.astro';
+import { ui } from '../../i18n/ui';
+
+const allServices = await getCollection('services');
+
+// Tab order definition
+const tabOrder = ['design', 'construction', 'property-management'] as const;
+type TabId = typeof tabOrder[number];
+
+const tabLabels: Record<TabId, { en: string; es: string }> = {
+  'design': { en: ui.en.tab_design, es: ui.es.tab_design },
+  'construction': { en: ui.en.tab_construction, es: ui.es.tab_construction },
+  'property-management': { en: ui.en.tab_property, es: ui.es.tab_property },
+};
+
+// Group by tab value and lang
+const byTab: Record<string, { en: typeof allServices[number] | undefined; es: typeof allServices[number] | undefined }> = {};
+
+for (const entry of allServices) {
+  const tabId = entry.data.tab;
+  if (!byTab[tabId]) byTab[tabId] = { en: undefined, es: undefined };
+  if (entry.data.lang === 'en') byTab[tabId].en = entry;
+  else if (entry.data.lang === 'es') byTab[tabId].es = entry;
+}
+
+// Render markdown for each tab pair
+const tabsData = await Promise.all(
+  tabOrder.map(async (tabId) => {
+    const pair = byTab[tabId] ?? { en: undefined, es: undefined };
+
+    const [enResult, esResult] = await Promise.all([
+      pair.en ? render(pair.en) : Promise.resolve({ Content: null }),
+      pair.es ? render(pair.es) : Promise.resolve({ Content: null }),
+    ]);
+
+    // Render the Content component to an HTML string via set:html
+    // We collect the raw body as fallback if render returns a component
+    const contentEn = pair.en?.body ?? '';
+    const contentEs = pair.es?.body ?? '';
+
+    return {
+      id: tabId,
+      labelEn: tabLabels[tabId].en,
+      labelEs: tabLabels[tabId].es,
+      _enEntry: pair.en,
+      _esEntry: pair.es,
+      _enResult: enResult,
+      _esResult: esResult,
+      contentEn,
+      contentEs,
+    };
+  })
+);
+---
+
+<Page
+  title="Services"
+  description="Architecture, construction, and property management services by Avalos Arquitectos in Los Cabos, Mexico."
+  active="services"
+>
+  <section class="section container">
+    <h1>
+      <span lang="en">{ui.en.services_title}</span>
+      <span lang="es">{ui.es.services_title}</span>
+    </h1>
+    <p class="subtitle">
+      <span lang="en">{ui.en.services_subtitle}</span>
+      <span lang="es">{ui.es.services_subtitle}</span>
+    </p>
+
+    <div class="service-tabs">
+      <div role="tablist" class="tab-list" aria-label="Services">
+        {tabsData.map((tab, i) => (
+          <button
+            type="button"
+            role="tab"
+            id={`tab-${tab.id}`}
+            data-tab-key={tab.id}
+            aria-selected={i === 0 ? 'true' : 'false'}
+            aria-controls={`panel-${tab.id}`}
+            tabindex={i === 0 ? '0' : '-1'}
+            class="tab-button"
+          >
+            <span lang="en">{tab.labelEn}</span>
+            <span lang="es">{tab.labelEs}</span>
+          </button>
+        ))}
+      </div>
+
+      {tabsData.map((tab, i) => (
+        <div
+          role="tabpanel"
+          id={`panel-${tab.id}`}
+          aria-labelledby={`tab-${tab.id}`}
+          class="tab-panel"
+          style={i === 0 ? 'display: block;' : 'display: none;'}
+          hidden={i !== 0 ? true : undefined}
+        >
+          <div lang="en" class="content-block">
+            {tab._enResult.Content && <tab._enResult.Content />}
+          </div>
+          <div lang="es" class="content-block">
+            {tab._esResult.Content && <tab._esResult.Content />}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+</Page>
+
+<style>
+  .section {
+    padding-block: var(--space-xl, 4rem);
+  }
+
+  h1 {
+    font-size: var(--text-3xl, 2.25rem);
+    font-weight: var(--font-weight-light, 300);
+    margin-bottom: var(--space-sm, 0.75rem);
+  }
+
+  .subtitle {
+    font-size: var(--text-base, 1rem);
+    color: var(--color-text-muted, #6b7280);
+    line-height: 1.7;
+    max-width: 72ch;
+    margin-bottom: var(--space-md, 1.5rem);
+  }
+
+  /* ── Tab list ── */
+  .tab-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0;
+    border-bottom: 1px solid var(--color-border, #e5e7eb);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 600px) {
+    .tab-list {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
+      padding-inline-end: 1.5rem;
+    }
+    .tab-list::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tab-button {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: var(--space-sm, 0.75rem) var(--space-md, 1.5rem);
+    margin-bottom: -1px;
+    font-size: var(--text-sm, 0.875rem);
+    font-family: inherit;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--color-text-muted, #6b7280);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .tab-button:hover {
+    color: var(--color-text, #111827);
+  }
+
+  .tab-button[aria-selected='true'] {
+    color: var(--color-text, #111827);
+    border-bottom-color: var(--color-accent, #8b6f47);
+  }
+
+  .tab-button:focus-visible {
+    outline: 2px solid var(--color-accent, #8b6f47);
+    outline-offset: 2px;
+  }
+
+  /* ── Tab panels ── */
+  .tab-panel {
+    padding-top: var(--space-md, 1.5rem);
+  }
+
+  /* ── Content blocks — base text styles ── */
+  .content-block :global(p) {
+    font-size: var(--text-base, 1rem);
+    line-height: 1.75;
+    color: var(--color-text, #111827);
+    margin-bottom: var(--space-sm, 0.75rem);
+  }
+
+  .content-block :global(ul) {
+    list-style: disc;
+    padding-left: var(--space-md, 1.5rem);
+    margin-bottom: var(--space-sm, 0.75rem);
+  }
+
+  .content-block :global(li) {
+    font-size: var(--text-base, 1rem);
+    line-height: 1.75;
+    color: var(--color-text, #111827);
+    margin-bottom: 0.25rem;
+  }
+
+  /* ── Service sections — grouped by JS ── */
+  .content-block :global(.service-section) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-md, 1.5rem);
+    align-items: start;
+    margin-bottom: var(--space-lg, 2.5rem);
+  }
+
+  .content-block :global(.service-section h2) {
+    grid-column: 1 / -1;
+    font-size: var(--text-xl, 1.25rem);
+    font-weight: var(--font-weight-light, 300);
+    letter-spacing: 0.02em;
+    margin: 0;
+    color: var(--color-text, #111827);
+  }
+
+  .content-block :global(.service-section .section-image) {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .content-block :global(.service-section .section-text p:last-child) {
+    margin-bottom: 0;
+  }
+
+  /* Odd sections: image left, text right (default grid order) */
+  /* Even sections: image right, text left */
+  .content-block :global(.service-section:nth-of-type(even) .section-image) {
+    order: 2;
+  }
+
+  .content-block :global(.service-section:nth-of-type(even) .section-text) {
+    order: 1;
+  }
+
+  @media (max-width: 600px) {
+    .content-block :global(.service-section) {
+      grid-template-columns: 1fr;
+    }
+
+    .content-block :global(.service-section:nth-of-type(even) .section-image),
+    .content-block :global(.service-section:nth-of-type(even) .section-text) {
+      order: unset;
+    }
+  }
+</style>
+
+<script>
+  import { initTabs } from '../../js/tabs.js';
+
+  // Group flat markdown output (h2, p>img, p, p, ...) into .service-section wrappers
+  document.querySelectorAll('.content-block').forEach((block) => {
+    const children = Array.from(block.children);
+    let section: HTMLElement | null = null;
+    let textDiv: HTMLElement | null = null;
+
+    children.forEach((el) => {
+      if (el.tagName === 'H2') {
+        // Start a new section
+        section = document.createElement('div');
+        section.className = 'service-section';
+        section.appendChild(el);
+        block.appendChild(section);
+        textDiv = null;
+      } else if (section) {
+        // Check if this element contains an img
+        const img = el.tagName === 'IMG' ? el : el.querySelector('img');
+        if (img) {
+          // Pull the img out of its wrapper <p> and add directly
+          img.classList.add('section-image');
+          section.appendChild(img);
+        } else {
+          // Text content — wrap in .section-text
+          if (!textDiv) {
+            textDiv = document.createElement('div');
+            textDiv.className = 'section-text';
+            section.appendChild(textDiv);
+          }
+          textDiv.appendChild(el);
+        }
+      }
+    });
+  });
+
+  const container = document.querySelector('.service-tabs');
+  if (container) initTabs(container as HTMLElement);
+</script>
