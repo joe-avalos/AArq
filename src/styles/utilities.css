@@ -1,0 +1,36 @@
+.container {
+  width: 100%;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  padding-inline: var(--space-sm);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.flex {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.section {
+  padding-block: var(--space-lg);
+}
+
+/* Hide elements by language — block-level for long-form content */
+html[lang="en"] [lang="es"].content-block { display: none; }
+html[lang="es"] [lang="en"].content-block { display: none; }

@@ -1,0 +1,834 @@
+---
+import { getCollection } from 'astro:content';
+import Page from '../layouts/Page.astro';
+import Carousel from '../components/Carousel.astro';
+import { ui } from '../i18n/ui';
+
+const testimonials = await getCollection('testimonials');
+
+// Testimonial author names in Spanish (keyed by project slug)
+const authorEs: Record<string, string> = {
+  'villa-bellissima': 'Propietario de Villa Bellissima',
+  'casa-turca': 'Propietario de Casa Turca',
+  'casa-serena': 'Propietario de Casa Serena',
+};
+
+const team = [
+  { name: 'Jacinto Avalos Raz Guzman',          titleEn: 'CEO & co-founder',                                 titleEs: 'Director General y cofundador',                        photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-1.png' },
+  { name: 'Ramon Osuna Lizarraga',               titleEn: 'Director of Construction & co-founder',            titleEs: 'Director de Construcción y cofundador',                photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-2.png' },
+  { name: 'Cecilia Portilla Robertson',          titleEn: 'Director of Public Relationships & co-founder',    titleEs: 'Directora de Relaciones Públicas y cofundadora',       photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-3.png' },
+  { name: 'Mirna Romero Antonio',                titleEn: 'Accounting Manager',                               titleEs: 'Gerente de Contabilidad',                              photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-4.png' },
+  { name: 'Yasvet Ontiveros Juarez',             titleEn: 'Administration and Human Resources Manager',       titleEs: 'Gerente de Administración y Recursos Humanos',         photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-5.png' },
+  { name: 'Victor Vazquez Castello',             titleEn: 'Design and Drafting Manager',                      titleEs: 'Gerente de Diseño y Dibujo',                           photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-6.png' },
+  { name: 'Alicia Garcia Antonio',               titleEn: 'Receptionist and Secretary',                       titleEs: 'Recepcionista y Secretaria',                           photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-9.png' },
+  { name: 'Amando Lazaro Jacobo',                titleEn: 'Assistant',                                        titleEs: 'Asistente',                                            photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-10.png' },
+  { name: 'Silvia Almanza',                      titleEn: 'Assistant',                                        titleEs: 'Asistente',                                            photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-11.png' },
+  { name: 'Darian Valeria Beltran Zamora',       titleEn: 'Administrative and Accounting Assistant',          titleEs: 'Asistente Administrativa y de Contabilidad',           photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-12.png' },
+  { name: 'Nathali Leonor Cortes Morin',         titleEn: 'Administrative and Construction Assistant',        titleEs: 'Asistente Administrativa y de Construcción',           photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-13.png' },
+  { name: 'Diana Paola Garcia Olivo',            titleEn: 'Draftswoman and Designer',                         titleEs: 'Dibujante y Diseñadora',                               photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-14.png' },
+  { name: 'Hector Oswaldo Aldrete Gutierrez',    titleEn: 'Designer and Construction Supervisor',             titleEs: 'Diseñador y Supervisor de Construcción',               photo: 'https://avalosarquitectos.com/public/content/about/team/team-member-15.png' },
+];
+
+const tabs = [
+  { id: 'history',    labelEn: ui.en.about_history,    labelEs: ui.es.about_history },
+  { id: 'mission',    labelEn: ui.en.about_mission,    labelEs: ui.es.about_mission },
+  { id: 'philosophy', labelEn: ui.en.about_philosophy, labelEs: ui.es.about_philosophy },
+  { id: 'team',       labelEn: ui.en.about_team,       labelEs: ui.es.about_team },
+];
+---
+
+<Page
+  title="About Us"
+  description="Meet the team behind Avalos Arquitectos. Our mission, philosophy, and award-winning architecture in Baja California Sur."
+  active="about"
+>
+  <!-- ============================================================
+       Always visible: title + intro
+  ============================================================ -->
+  <section class="about-intro max-width">
+    <h1 class="page-title">
+      <span lang="en">{ui.en.about_title}</span>
+      <span lang="es">{ui.es.about_title}</span>
+    </h1>
+    <p class="intro-paragraph">
+      <span lang="en">
+        Avalos Arquitectos y Asociados, S.C. is an architecture, design, engineering, and construction
+        firm. With over 40 years of experience, our team has earned an international reputation for high
+        quality design and creative excellence. We are responsible for some of the most thoughtful,
+        progressive, and award-winning structures in Mexico's cities of Cabo San Lucas, San Jose del
+        Cabo, La Paz, Mexico City, Loreto, Puebla, San Miguel de Allende, and Hermosillo, as well as in
+        Spain and the United States.
+      </span>
+      <span lang="es">
+        Avalos Arquitectos y Asociados, S.C. es una firma de arquitectura, diseño, ingeniería y
+        construcción. Con más de 40 años de experiencia, nuestro equipo ha ganado una reputación
+        internacional por la alta calidad en diseño y excelencia creativa. Somos responsables de algunas
+        de las estructuras más innovadoras, vanguardistas y galardonadas en las ciudades mexicanas de
+        Cabo San Lucas, San José del Cabo, La Paz, Ciudad de México, Loreto, Puebla, San Miguel de
+        Allende y Hermosillo, así como en España y Estados Unidos.
+      </span>
+    </p>
+  </section>
+
+  <!-- ============================================================
+       Tab navigation
+  ============================================================ -->
+  <div class="about-tabs max-width">
+    <div role="tablist" class="tab-list" aria-label="About sections">
+      {tabs.map((tab, i) => (
+        <button
+          type="button"
+          role="tab"
+          id={`tab-${tab.id}`}
+          data-tab-key={tab.id}
+          aria-selected={i === 0 ? 'true' : 'false'}
+          aria-controls={`panel-${tab.id}`}
+          tabindex={i === 0 ? '0' : '-1'}
+          class="tab-button"
+        >
+          <span lang="en">{tab.labelEn}</span>
+          <span lang="es">{tab.labelEs}</span>
+        </button>
+      ))}
+    </div>
+
+    <!-- ============================================================
+         Panel: Our History
+    ============================================================ -->
+    <div role="tabpanel" id="panel-history" aria-labelledby="tab-history" class="tab-panel" style="display: block;">
+      <div
+        class="parallax-banner history-banner"
+        role="img"
+        aria-label="Architectural landscape by Avalos Arquitectos"
+      ></div>
+
+      <section class="about-history max-width-inner">
+        <div class="history-image">
+          <img
+            src="https://avalosarquitectos.com/public/content/about/about-parallax-2.jpg"
+            width="728"
+            height="633"
+            alt="Avalos Arquitectos history"
+            loading="lazy"
+          />
+        </div>
+        <div class="history-content">
+        <p>
+          <span lang="en">
+            Jacinto Avalos established his practice in Mexico City in 1970. In 1986, Jacinto Avalos and
+            Ramon Osuna began designing and building projects together in Cabo San Lucas, Mexico. Avalos
+            Arquitectos y Asociados, S.C. ("AAA") was incorporated in January 1991.
+          </span>
+          <span lang="es">
+            Jacinto Ávalos estableció su práctica en la Ciudad de México en 1970. En 1986, Jacinto Ávalos y
+            Ramón Osuna comenzaron a diseñar y construir proyectos juntos en Cabo San Lucas, México. Avalos
+            Arquitectos y Asociados, S.C. ("AAA") fue constituida en enero de 1991.
+          </span>
+        </p>
+        <p>
+          <span lang="en">
+            AAA employs architects, designers, engineers, and builders of all trades who have extensive
+            experience in creative and technical development, construction administration, and documentation,
+            and who are highly qualified in managing complex projects.
+          </span>
+          <span lang="es">
+            AAA emplea arquitectos, diseñadores, ingenieros y constructores de todos los oficios que cuentan
+            con amplia experiencia en desarrollo creativo y técnico, administración de construcción y
+            documentación, y que están altamente calificados en la gestión de proyectos complejos.
+          </span>
+        </p>
+        <p>
+          <span lang="en">
+            We are full service master builders, integrating a full spectrum of services from design to
+            construction, urban planning to interiors, and to concierge property management and real estate
+            consulting services.
+          </span>
+          <span lang="es">
+            Somos constructores maestros de servicio completo, integrando un amplio espectro de servicios
+            desde diseño hasta construcción, planificación urbana e interiores, y servicios de administración
+            de propiedades y consultoría inmobiliaria.
+          </span>
+        </p>
+        <p>
+          <span lang="en">
+            Above all, we are in service to our clients, most of whom have become repeat customers and good
+            friends.
+          </span>
+          <span lang="es">
+            Sobre todo, estamos al servicio de nuestros clientes, la mayoría de los cuales se han convertido
+            en clientes recurrentes y buenos amigos.
+          </span>
+        </p>
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================
+         Panel: Our Mission
+    ============================================================ -->
+    <div role="tabpanel" id="panel-mission" aria-labelledby="tab-mission" class="tab-panel" style="display: none;" hidden>
+      <div
+        class="parallax-banner mission-banner"
+        role="img"
+        aria-label="Architectural design by Avalos Arquitectos"
+      >
+        <h2 class="banner-tagline">
+          <span>
+            <span lang="en">We do not design spaces.</span>
+            <span lang="es">No diseñamos espacios.</span>
+          </span>
+          <span>
+            <span lang="en">We create lifestyles.</span>
+            <span lang="es">Creamos estilos de vida.</span>
+          </span>
+        </h2>
+      </div>
+
+      <section class="our-mission max-width-inner">
+        <div class="mission-content">
+          <p class="mission-text">
+            <span lang="en">
+              To serve and delight our clients with excellence in design and execution, exceptional service,
+              and ethics in practice. We create functional, meaningful spaces in harmony where light, texture,
+              color, and volumes come to life.
+            </span>
+            <span lang="es">
+              Servir y deleitar a nuestros clientes con excelencia en diseño y ejecución, servicio excepcional
+              y ética en la práctica. Creamos espacios funcionales y significativos en armonía donde la luz, la
+              textura, el color y los volúmenes cobran vida.
+            </span>
+          </p>
+        </div>
+        <div class="mission-image">
+          <img
+            src="https://avalosarquitectos.com/public/content/about/our-mission.jpg"
+            width="728"
+            height="633"
+            alt="Our mission — Avalos Arquitectos"
+            loading="lazy"
+          />
+        </div>
+      </section>
+    </div>
+
+    <!-- ============================================================
+         Panel: Our Philosophy — three pillars + testimonials
+    ============================================================ -->
+    <div role="tabpanel" id="panel-philosophy" aria-labelledby="tab-philosophy" class="tab-panel" style="display: none;" hidden>
+      <section class="our-philosophy">
+        <p class="philosophy-subtitle">
+          <span lang="en">Our design philosophy is based on three pillars:</span>
+          <span lang="es">Nuestra filosofía de diseño se basa en tres pilares:</span>
+        </p>
+
+        <!-- Pillar 1: Our Clients (image left, text right) -->
+        <div class="pillar pillar-normal">
+          <div class="pillar-image">
+            <picture>
+              <source media="(max-width: 768px)" srcset="https://avalosarquitectos.com/public/content/about/the-patient-mobile.jpg" />
+              <img src="https://avalosarquitectos.com/public/content/about/the-patient.jpg" width="728" height="475" alt="Our clients" loading="lazy" />
+            </picture>
+          </div>
+          <div class="pillar-content">
+            <h3 class="pillar-title">
+              <span lang="en">{ui.en.about_clients}</span>
+              <span lang="es">{ui.es.about_clients}</span>
+            </h3>
+            <p>
+              <span lang="en">
+                For us, every project is personal, whether public or private. We believe that beautiful,
+                thoughtfully executed spaces bring joy and a strong sense of place and belonging to those
+                that inhabit them. We approach each project with a strong artistic sensibility and reverence
+                for the lives that will be lived inside of it.
+              </span>
+              <span lang="es">
+                Para nosotros, cada proyecto es personal, ya sea público o privado. Creemos que los espacios
+                hermosos y cuidadosamente ejecutados brindan alegría y un fuerte sentido de lugar y
+                pertenencia a quienes los habitan. Abordamos cada proyecto con una fuerte sensibilidad
+                artística y reverencia por las vidas que se vivirán dentro de él.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Pillar 2: The Land (text left, image right) -->
+        <div class="pillar pillar-reverse">
+          <div class="pillar-image">
+            <picture>
+              <source media="(max-width: 768px)" srcset="https://avalosarquitectos.com/public/content/about/the-land-mobile.jpg" />
+              <img src="https://avalosarquitectos.com/public/content/about/the-land.jpg" width="728" height="475" alt="The land" loading="lazy" />
+            </picture>
+          </div>
+          <div class="pillar-content">
+            <h3 class="pillar-title">
+              <span lang="en">{ui.en.about_land}</span>
+              <span lang="es">{ui.es.about_land}</span>
+            </h3>
+            <p>
+              <span lang="en">
+                A successful project achieves a harmonious relationship between architecture and its
+                environment. We consider light, space, views, water, topography, and the unique qualities of
+                each structure's location and context. Our work is sensitive to and respectful of the land
+                upon which we build, and meticulously designed to achieve the ultimate integration of nature
+                and structure.
+              </span>
+              <span lang="es">
+                Un proyecto exitoso logra una relación armoniosa entre la arquitectura y su entorno.
+                Consideramos la luz, el espacio, las vistas, el agua, la topografía y las cualidades únicas
+                de la ubicación y el contexto de cada estructura. Nuestro trabajo es sensible y respetuoso
+                con la tierra sobre la que construimos, y está meticulosamente diseñado para lograr la máxima
+                integración entre naturaleza y estructura.
+              </span>
+            </p>
+          </div>
+        </div>
+
+        <!-- Pillar 3: The Architecture (image left, text right) -->
+        <div class="pillar pillar-normal">
+          <div class="pillar-image">
+            <picture>
+              <source media="(max-width: 768px)" srcset="https://avalosarquitectos.com/public/content/about/the-arhitecture-mobile.jpg" />
+              <img src="https://avalosarquitectos.com/public/content/about/the-arhitecture.jpg" width="728" height="475" alt="The architecture" loading="lazy" />
+            </picture>
+          </div>
+          <div class="pillar-content">
+            <h3 class="pillar-title">
+              <span lang="en">{ui.en.about_architecture}</span>
+              <span lang="es">{ui.es.about_architecture}</span>
+            </h3>
+            <p>
+              <span lang="en">
+                We have developed a unique architectural language that is Mexican, functional, contemporary,
+                and minimalist. We use local materials and textures in concert with simplicity of form,
+                purity of space, and a curated range of materials.
+              </span>
+              <span lang="es">
+                Hemos desarrollado un lenguaje arquitectónico único que es mexicano, funcional, contemporáneo
+                y minimalista. Utilizamos materiales y texturas locales en concierto con la simplicidad de
+                forma, pureza de espacio y una gama curada de materiales.
+              </span>
+            </p>
+            <p>
+              <span lang="en">
+                We combine the clean volumes of minimalism with warmth derived from the use of natural
+                materials to create a visual and emotional conversation between indoor and outdoor spaces.
+              </span>
+              <span lang="es">
+                Combinamos los volúmenes limpios del minimalismo con la calidez derivada del uso de materiales
+                naturales para crear una conversación visual y emocional entre espacios interiores y exteriores.
+              </span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Testimonials — end of philosophy panel -->
+      <section class="testimonials-section">
+        <Carousel label="Client testimonials" autoplay={true}>
+          {testimonials.map((t) => (
+            <div class="testimonial-slide" role="group" aria-roledescription="slide" aria-label={`Testimonial — ${t.data.author}`}>
+              <blockquote class="testimonial-quote">
+                <p>
+                  <span lang="en">{t.data.text.en}</span>
+                  <span lang="es">{t.data.text.es}</span>
+                </p>
+                <footer class="testimonial-footer">
+                  <cite class="testimonial-author">
+                    <span lang="en">{t.data.author}</span>
+                    <span lang="es">{authorEs[t.data.project] ?? t.data.author}</span>
+                  </cite>
+                  <a
+                    href={`/projects/${t.data.project}/`}
+                    class="testimonial-link"
+                  >
+                    <span lang="en">{ui.en.view_project}</span>
+                    <span lang="es">{ui.es.view_project}</span>
+                  </a>
+                </footer>
+              </blockquote>
+            </div>
+          ))}
+        </Carousel>
+      </section>
+    </div>
+
+    <!-- ============================================================
+         Panel: Our Team
+    ============================================================ -->
+    <div role="tabpanel" id="panel-team" aria-labelledby="tab-team" class="tab-panel" style="display: none;" hidden>
+      <section class="our-team">
+        <div class="team-grid">
+          {team.map((member) => (
+            <div class="team-card">
+              <img
+                src={member.photo}
+                alt={member.name}
+                width="300"
+                height="300"
+                loading="lazy"
+              />
+              <div class="team-info">
+                <div class="team-name">{member.name}</div>
+                <div class="team-title">
+                  <span lang="en">{member.titleEn}</span>
+                  <span lang="es">{member.titleEs}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       Our Awards (hidden — pending content from client)
+  ============================================================ -->
+  <!--
+  <section class="our-awards max-width">
+    <h2 class="section-heading">
+      <span lang="en">{ui.en.about_awards}</span>
+      <span lang="es">{ui.es.about_awards}</span>
+    </h2>
+  </section>
+  -->
+</Page>
+
+<style>
+  /* ---- Shared layout ---- */
+  .max-width {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-md, 1.5rem);
+  }
+
+  .page-title {
+    font-size: clamp(1.5rem, 3.5vw, 2.25rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-block: var(--space-xl, 3rem) var(--space-md, 1.5rem);
+    color: var(--color-text-primary);
+  }
+
+  /* ---- Intro ---- */
+  .about-intro {
+    padding-block-end: var(--space-md, 1.5rem);
+  }
+
+  .intro-paragraph {
+    font-size: 1.1rem;
+    line-height: 1.75;
+    max-width: 80ch;
+    color: var(--color-text-secondary);
+  }
+
+  /* ---- Tab list — heading-style tabs ---- */
+  .tab-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs, 0.5rem);
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 600px) {
+    .tab-list {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
+      -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
+      padding-inline-end: 1.5rem;
+    }
+    .tab-list::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  .tab-button {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    padding: var(--space-sm, 0.75rem) var(--space-sm, 0.75rem);
+    font-size: clamp(1rem, 2vw, 1.35rem);
+    font-family: inherit;
+    font-weight: 300;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--color-text-muted, #9ca3af);
+    cursor: pointer;
+    transition: color 0.2s ease, border-color 0.2s ease;
+    white-space: nowrap;
+  }
+
+  .tab-button:hover {
+    color: var(--color-text, #111827);
+  }
+
+  .tab-button[aria-selected='true'] {
+    color: var(--color-text, #111827);
+    border-bottom-color: var(--color-accent, #8b6f47);
+    font-weight: 400;
+  }
+
+  .tab-button:focus-visible {
+    outline: 2px solid var(--color-accent, #8b6f47);
+    outline-offset: 2px;
+  }
+
+  /* ---- Tab panels ---- */
+  .tab-panel {
+    padding-top: var(--space-md, 1.5rem);
+  }
+
+  /* ---- Mission panel ---- */
+  .our-mission {
+    display: flex;
+    align-items: start;
+    gap: var(--space-xl, 3rem);
+    padding-block: var(--space-md, 1.5rem) var(--space-lg, 2rem);
+  }
+
+  .mission-content {
+    flex: 1 1 0;
+  }
+
+  .mission-text {
+    line-height: 1.75;
+    color: var(--color-text-secondary);
+  }
+
+  .mission-image {
+    flex: 0 0 380px;
+    width: 380px;
+    height: 330px;
+    overflow: hidden;
+  }
+
+  .mission-image img {
+    width: 140%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+    animation: pan-slide 216s linear infinite alternate;
+  }
+
+  @media (max-width: 768px) {
+    .our-mission {
+      flex-direction: column;
+    }
+    .mission-image {
+      flex: none;
+      width: 100%;
+      height: 250px;
+    }
+  }
+
+  /* ---- Slow horizontal pan — GPU-accelerated transform ---- */
+  @keyframes pan-slide {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-28.57%); }
+    /* 40% overflow → shift by 40/140 = 28.57% to reveal the hidden portion */
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .history-image img,
+    .mission-image img {
+      animation: none;
+      transform: translateX(-14%);
+    }
+  }
+
+  /* ---- Shared parallax banners ---- */
+  .parallax-banner {
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    height: 420px;
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+  }
+
+  .history-banner {
+    background-image: url('https://avalosarquitectos.com/public/content/about/about-parallax-1.jpg');
+  }
+
+  .mission-banner {
+    background-image: url('https://avalosarquitectos.com/public/content/about/the-arhitecture.jpg');
+  }
+
+  .mission-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+  }
+
+  .banner-tagline {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    text-align: center;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    padding-inline: var(--space-md, 1.5rem);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .parallax-banner {
+      background-attachment: scroll;
+    }
+  }
+
+  .max-width-inner {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-md, 1.5rem);
+  }
+
+  /* ---- History panel ---- */
+  .about-history {
+    display: flex;
+    align-items: start;
+    gap: var(--space-xl, 3rem);
+    padding-block: var(--space-md, 1.5rem) var(--space-xl, 3rem);
+  }
+
+  .history-image {
+    flex: 0 0 380px;
+    width: 380px;
+    height: 330px;
+    overflow: hidden;
+  }
+
+  .history-image img {
+    width: 140%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    will-change: transform;
+    animation: pan-slide 216s linear infinite alternate;
+  }
+
+  .history-content {
+    flex: 1 1 0;
+  }
+
+  .history-content p {
+    line-height: 1.75;
+    margin-block-end: var(--space-md, 1.5rem);
+    color: var(--color-text-secondary);
+  }
+
+  .history-content p:last-child {
+    margin-block-end: 0;
+  }
+
+  @media (max-width: 768px) {
+    .about-history {
+      flex-direction: column;
+    }
+    .history-image {
+      flex: none;
+      width: 100%;
+      height: 250px;
+    }
+  }
+
+  /* ---- Philosophy panel ---- */
+  .our-philosophy {
+    padding-block-end: var(--space-lg, 2rem);
+  }
+
+  .philosophy-subtitle {
+    font-size: 1.1rem;
+    margin-block-end: var(--space-xl, 3rem);
+    color: var(--color-text-secondary);
+  }
+
+  .pillar {
+    display: flex;
+    align-items: start;
+    gap: var(--space-xl, 3rem);
+    margin-block-end: var(--space-2xl, 4rem);
+  }
+
+  .pillar-reverse {
+    flex-direction: row-reverse;
+  }
+
+  .pillar-content {
+    flex: 1 1 0;
+  }
+
+  .pillar-title {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-block-end: var(--space-md, 1.5rem);
+    color: var(--color-text-primary);
+  }
+
+  .pillar-content p {
+    line-height: 1.75;
+    margin-block-end: var(--space-md, 1.5rem);
+    color: var(--color-text-secondary);
+  }
+
+  .pillar-image {
+    flex: 0 0 auto;
+    max-width: 420px;
+    width: 100%;
+    overflow: hidden;
+  }
+
+  .pillar-image img {
+    width: 100%;
+    height: auto;
+    max-height: 320px;
+    object-fit: cover;
+    display: block;
+  }
+
+  @media (max-width: 768px) {
+    .pillar,
+    .pillar-reverse {
+      flex-direction: column;
+    }
+
+    .pillar-image {
+      max-width: 100%;
+    }
+  }
+
+  /* ---- Testimonials ---- */
+  .testimonials-section {
+    background: var(--color-accent, #1a2b45);
+    color: #ffffff;
+    padding-block: var(--space-2xl, 4rem);
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+  }
+
+  .testimonials-section :global(.carousel) {
+    max-width: 800px;
+    margin-inline: auto;
+    padding-inline: var(--space-md, 1.5rem);
+  }
+
+  .testimonial-slide {
+    padding-inline: var(--space-xl, 3rem);
+    padding-block: var(--space-lg, 2rem);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 320px;
+  }
+
+  .testimonial-quote {
+    margin: 0;
+    font-style: normal;
+  }
+
+  .testimonial-quote p {
+    font-size: clamp(0.95rem, 1.5vw, 1.1rem);
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.9);
+    margin-block-end: var(--space-lg, 2rem);
+  }
+
+  .testimonial-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm, 0.75rem);
+    align-items: flex-start;
+  }
+
+  .testimonial-author {
+    font-style: normal;
+    font-size: 0.9rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .testimonial-link {
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #ffffff;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    transition: opacity 0.2s ease;
+  }
+
+  .testimonial-link:hover {
+    opacity: 0.7;
+  }
+
+  /* ---- Team panel ---- */
+  .our-team {
+    padding-block: var(--space-sm, 0.75rem) 0;
+  }
+
+  .team-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: var(--space-lg, 2rem);
+  }
+
+  .team-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-sm, 0.75rem);
+  }
+
+  .team-card img {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .team-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .team-name {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    line-height: 1.3;
+  }
+
+  .team-title {
+    font-size: 0.82rem;
+    color: var(--color-text-secondary);
+    line-height: 1.4;
+  }
+</style>
+
+<script>
+  import { initTabs } from '../js/tabs.js';
+  const container = document.querySelector('.about-tabs');
+  if (container) initTabs(container as HTMLElement);
+</script>

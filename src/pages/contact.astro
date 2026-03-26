@@ -1,0 +1,181 @@
+---
+import Page from '../layouts/Page.astro';
+import { ui } from '../i18n/ui';
+---
+
+<Page
+  title="Contact"
+  description="Contact Avalos Arquitectos in Cabo San Lucas. Reach out for architecture, design, construction, and property management inquiries."
+  active="contact"
+>
+  <section class="contact-section max-width">
+    <h1 class="page-title">
+      <span lang="en">{ui.en.contact_title}</span>
+      <span lang="es">{ui.es.contact_title}</span>
+    </h1>
+
+    <div class="contact-grid">
+      <!-- Left column: contact info -->
+      <div class="contact-info">
+        <!-- Jacinto / projects -->
+        <div class="contact-item">
+          <p class="contact-label">
+            <span lang="en">{ui.en.contact_projects_label}</span>
+            <span lang="es">{ui.es.contact_projects_label}</span>
+          </p>
+          <a class="contact-link" href="mailto:javalos@avalosarquitectos.com">
+            javalos@avalosarquitectos.com
+          </a>
+        </div>
+
+        <!-- General inquiries -->
+        <div class="contact-item">
+          <p class="contact-label">
+            <span lang="en">{ui.en.contact_general_label}</span>
+            <span lang="es">{ui.es.contact_general_label}</span>
+          </p>
+          <a class="contact-link" href="mailto:info@avalosarquitectos.com">
+            info@avalosarquitectos.com
+          </a>
+          <a class="contact-link" href="tel:+526241431440">
+            +52 (624) 143.1440
+          </a>
+        </div>
+
+        <!-- Physical address -->
+        <div class="contact-item">
+          <p class="contact-label firm-name">Avalos Arquitectos y Asociados, S.C.</p>
+          <address class="contact-address">
+            <a
+              href="https://maps.app.goo.gl/d9BxKSN5XKhLBRo56"
+              target="_blank"
+              rel="nofollow noopener"
+              class="contact-link address-link"
+            >
+              Camino del Pedernal 160<br />
+              Pedregal<br />
+              Cabo San Lucas, Los Cabos<br />
+              Baja California Sur<br />
+              Mexico CP 23453
+            </a>
+          </address>
+        </div>
+      </div>
+
+      <!-- Right column: map image -->
+      <div class="contact-map">
+        <a
+          href="https://maps.app.goo.gl/d9BxKSN5XKhLBRo56"
+          target="_blank"
+          rel="nofollow noopener"
+          title="Map — Avalos Arquitectos"
+          aria-label="Open location in Google Maps"
+        >
+          <img
+            src="https://avalosarquitectos.com/public/images/map-image.jpg"
+            width="966"
+            height="721"
+            alt="Map showing Avalos Arquitectos office location in Cabo San Lucas"
+            loading="lazy"
+          />
+        </a>
+      </div>
+    </div>
+  </section>
+</Page>
+
+<style>
+  .max-width {
+    max-width: 1200px;
+    margin-inline: auto;
+    padding-inline: var(--space-md, 1.5rem);
+  }
+
+  .page-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 300;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    margin-block: var(--space-xl, 3rem) var(--space-lg, 2rem);
+    color: var(--color-text-primary);
+  }
+
+  /* Two-column grid */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-2xl, 4rem);
+    align-items: start;
+    padding-block-end: var(--space-2xl, 4rem);
+  }
+
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-xl, 3rem);
+    }
+  }
+
+  /* Contact info column */
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl, 3rem);
+  }
+
+  .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs, 0.5rem);
+  }
+
+  .contact-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-text-secondary, #6b7280);
+    margin: 0;
+  }
+
+  .firm-name {
+    font-weight: 500;
+  }
+
+  .contact-link {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s ease;
+    display: inline-block;
+  }
+
+  .contact-link:hover,
+  .contact-link:focus-visible {
+    border-color: var(--color-text-primary);
+  }
+
+  .contact-address {
+    font-style: normal;
+  }
+
+  .contact-address .contact-link {
+    display: block;
+  }
+
+  .address-link {
+    line-height: 1.8;
+  }
+
+  /* Map column */
+  .contact-map a {
+    display: block;
+  }
+
+  .contact-map img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+</style>

@@ -1,6 +1,22 @@
-.claude/
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+.astro/
+
+# IDE
 .idea/
+
+# Claude Code
+.claude/
 CLAUDE.md
-server.js
+
+# Internal docs
+docs/
+
+# Misc
 *.json
-!.prettierrc
+!package.json
+!package-lock.json
+!tsconfig.json

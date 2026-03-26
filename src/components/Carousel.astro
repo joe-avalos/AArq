@@ -1,0 +1,164 @@
+---
+import { ui } from '../i18n/ui';
+
+interface Props {
+  label: string;
+  autoplay?: boolean;
+  fullscreen?: boolean;
+}
+
+const { label, autoplay = false, fullscreen = false } = Astro.props;
+const t = ui;
+---
+
+<div
+  class:list={['carousel', { 'carousel-fullscreen': fullscreen }]}
+  role="region"
+  aria-roledescription="carousel"
+  aria-label={label}
+  data-autoplay={autoplay ? 'true' : 'false'}
+>
+  <div class="carousel-track">
+    <slot />
+  </div>
+
+  <button class="carousel-prev" type="button" aria-label="">
+    <span lang="en">{t.en.carousel_prev}</span><span lang="es">{t.es.carousel_prev}</span>
+    <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <button class="carousel-next" type="button" aria-label="">
+    <span lang="en">{t.en.carousel_next}</span><span lang="es">{t.es.carousel_next}</span>
+    <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+
+  <div class="carousel-dots" role="tablist" aria-label="Slide navigation"></div>
+</div>
+
+<style>
+  .carousel {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .carousel-fullscreen {
+    width: 100vw;
+    height: 100vh;
+  }
+
+  .carousel-track {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .carousel-track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Slides inserted via <slot> */
+  .carousel-track > :global(*) {
+    flex: 0 0 100%;
+    scroll-snap-align: start;
+    height: 100%;
+  }
+
+  /* Prev / Next buttons */
+  .carousel-prev,
+  .carousel-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: rgba(0, 0, 0, 0.45);
+    color: #ffffff;
+    transition: background 0.2s ease;
+    /* Hide label text visually, keep for screen readers */
+    font-size: 0;
+  }
+
+  .carousel-prev {
+    left: var(--space-sm, 0.75rem);
+  }
+
+  .carousel-next {
+    right: var(--space-sm, 0.75rem);
+  }
+
+  .carousel-prev:hover,
+  .carousel-next:hover {
+    background: rgba(0, 0, 0, 0.72);
+  }
+
+  .carousel-prev svg,
+  .carousel-next svg {
+    flex-shrink: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .carousel-prev,
+    .carousel-next {
+      display: none;
+    }
+  }
+
+  /* Dots */
+  .carousel-dots {
+    position: absolute;
+    bottom: var(--space-sm, 0.75rem);
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    z-index: 2;
+  }
+
+  .carousel-dots button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    background: var(--color-border, rgba(255, 255, 255, 0.45));
+    transition: background 0.2s ease;
+  }
+
+  .carousel-dots button[aria-selected='true'] {
+    background: var(--color-accent, #ffffff);
+  }
+
+  /* In fullscreen context, always use white dots */
+  .carousel-fullscreen .carousel-dots button {
+    background: rgba(255, 255, 255, 0.45);
+  }
+
+  .carousel-fullscreen .carousel-dots button[aria-selected='true'] {
+    background: #ffffff;
+  }
+</style>
+
+<script>
+  import { Carousel } from '../js/carousel.js';
+
+  document.querySelectorAll('.carousel').forEach((el) => {
+    const autoplay = (el as HTMLElement).dataset.autoplay === 'true';
+    new Carousel(el as HTMLElement, { autoplay, interval: 5000 });
+  });
+</script>

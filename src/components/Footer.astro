@@ -1,0 +1,239 @@
+---
+import { ui } from '../i18n/ui';
+
+const t = ui;
+---
+
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div class="footer-grid">
+
+      <!-- Logo + Motto -->
+      <div class="footer-col footer-col--logo">
+        <a href="/" title="Avalos Arquitectos" class="footer-logo-link">
+          <img
+            src="https://avalosarquitectos.com/public/images/logo.svg"
+            alt="Avalos Arquitectos"
+            width="100"
+            height="100"
+            loading="lazy"
+            class="footer-logo"
+          />
+        </a>
+        <p class="footer-motto">
+          <span lang="en">&ldquo;{t.en.footer_motto}&rdquo;</span>
+          <span lang="es">&ldquo;{t.es.footer_motto}&rdquo;</span>
+        </p>
+      </div>
+
+      <!-- Sitemap -->
+      <div class="footer-col">
+        <h2 class="footer-heading">
+          <span lang="en">{t.en.footer_sitemap}</span>
+          <span lang="es">{t.es.footer_sitemap}</span>
+        </h2>
+        <nav aria-label="Footer navigation">
+          <ul class="footer-link-list">
+            <li>
+              <a href="/projects/">
+                <span lang="en">{t.en.nav_projects}</span><span lang="es">{t.es.nav_projects}</span>
+              </a>
+            </li>
+            <li>
+              <a href="/services/">
+                <span lang="en">{t.en.nav_services}</span><span lang="es">{t.es.nav_services}</span>
+              </a>
+            </li>
+            <li>
+              <a href="/about/">
+                <span lang="en">{t.en.nav_about}</span><span lang="es">{t.es.nav_about}</span>
+              </a>
+            </li>
+            <li>
+              <a href="/contact/">
+                <span lang="en">{t.en.nav_contact}</span><span lang="es">{t.es.nav_contact}</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Find Us -->
+      <div class="footer-col">
+        <h2 class="footer-heading">
+          <span lang="en">{t.en.footer_find_us}</span>
+          <span lang="es">{t.es.footer_find_us}</span>
+        </h2>
+        <address class="footer-address">
+          <a
+            href="https://maps.app.goo.gl/d9BxKSN5XKhLBRo56"
+            target="_blank"
+            rel="nofollow noopener"
+            class="footer-address-link"
+          >
+            Camino del Pedernal 160<br />
+            Pedregal<br />
+            Cabo San Lucas<br />
+            Baja California Sur<br />
+            CP 23453<br />
+            Mexico
+          </a>
+        </address>
+      </div>
+
+      <!-- Phone + Emails -->
+      <div class="footer-col">
+        <h2 class="footer-heading">
+          <span lang="en">{t.en.footer_phone}</span>
+          <span lang="es">{t.es.footer_phone}</span>
+        </h2>
+        <ul class="footer-link-list">
+          <li><a href="tel:+526241431440">+52 (624) 143.1440</a></li>
+        </ul>
+
+        <h2 class="footer-heading footer-heading--contact">
+          <span lang="en">{t.en.contact_projects_label}</span>
+          <span lang="es">{t.es.contact_projects_label}</span>
+        </h2>
+        <ul class="footer-link-list">
+          <li>
+            <a href="mailto:jacinto@avalosarquitectos.com" aria-label="Email Jacinto Avalos">
+              jacinto@avalosarquitectos.com
+            </a>
+          </li>
+        </ul>
+
+        <h2 class="footer-heading footer-heading--contact">
+          <span lang="en">{t.en.contact_general_label}</span>
+          <span lang="es">{t.es.contact_general_label}</span>
+        </h2>
+        <ul class="footer-link-list">
+          <li>
+            <a href="mailto:info@avalosarquitectos.com" aria-label="General inquiries email">
+              info@avalosarquitectos.com
+            </a>
+          </li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="footer-copyright">
+      <span lang="en">{t.en.footer_copyright}</span>
+      <span lang="es">{t.es.footer_copyright}</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-footer-bg);
+    padding-block: var(--space-lg);
+    font-size: var(--text-sm);
+    color: var(--color-text-secondary);
+  }
+
+  .footer-inner {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  /* Logo column is slightly narrower */
+  .footer-col--logo {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .footer-logo-link {
+    display: inline-block;
+  }
+
+  .footer-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    display: block;
+  }
+
+  .footer-motto {
+    margin: 0;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--color-text-secondary);
+  }
+
+  /* Section headings */
+  .footer-heading {
+    font-size: var(--text-xs);
+    font-weight: var(--font-weight-medium);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--color-text);
+    margin: 0 0 var(--space-xs) 0;
+  }
+
+  .footer-heading--contact {
+    margin-top: var(--space-sm);
+  }
+
+  /* Link lists */
+  .footer-link-list {
+    list-style: none;
+    margin: 0 0 var(--space-xs) 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .footer-link-list a,
+  .footer-address-link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .footer-link-list a:hover,
+  .footer-address-link:hover {
+    color: var(--color-accent);
+  }
+
+  /* Address */
+  .footer-address {
+    font-style: normal;
+  }
+
+  /* Copyright */
+  .footer-copyright {
+    margin-top: var(--space-lg);
+    padding-top: var(--space-sm);
+    border-top: var(--border-thin);
+    text-align: center;
+    font-size: var(--text-xs);
+    color: var(--color-text-secondary);
+  }
+
+  /* Tablet: 2 columns */
+  @media (max-width: 1024px) {
+    .footer-grid {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  /* Mobile: single column */
+  @media (max-width: 600px) {
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+  }
+</style>
