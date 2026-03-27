@@ -292,13 +292,13 @@ const t = ui;
   /* Home variant — force white on action buttons */
   .header-home :global(.theme-toggle),
   .header-home :global(.lang-toggle) {
-    color: rgba(255, 255, 255, 0.9);
+    color: rgba(255, 255, 255, 0.9) !important;
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
     border-color: rgba(255, 255, 255, 0.4);
   }
   .header-home :global(.theme-toggle:hover),
   .header-home :global(.lang-toggle:hover) {
-    color: #ffffff;
+    color: #ffffff !important;
     border-color: rgba(255, 255, 255, 0.8);
   }
 
@@ -328,10 +328,6 @@ const t = ui;
   .header-home .hamburger-line {
     background: #ffffff;
     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
-  }
-  .header-home.menu-open .hamburger-line {
-    background: var(--color-text);
-    filter: none;
   }
 
   /* === Mobile === */
@@ -404,12 +400,6 @@ const t = ui;
     }
     .header-home.menu-open .dropdown a:hover {
       color: var(--color-text) !important;
-    }
-    .header-home.menu-open :global(.theme-toggle),
-    .header-home.menu-open :global(.lang-toggle) {
-      color: var(--color-text);
-      text-shadow: none;
-      border-color: var(--color-border);
     }
   }
 </style>

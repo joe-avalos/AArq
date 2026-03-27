@@ -92,54 +92,80 @@ test.describe('Mobile menu — toggle button colors', () => {
   const getButtonColor = (page: any, selector: string) =>
     page.evaluate((sel: string) => getComputedStyle(document.querySelector(sel)!).color, selector);
 
-  test('homepage: toggles are white when menu closed, theme-aware when open', async ({ page, isMobile }) => {
+  const assertWhite = (color: string, label: string) => {
+    const r = parseInt(color.match(/\d+/g)![0]);
+    expect(r, `${label} should be white (r=${r})`).toBeGreaterThan(200);
+  };
+
+  const getHamburgerColor = (page: any) =>
+    page.evaluate(() => getComputedStyle(document.querySelector('.hamburger-line')!).backgroundColor);
+
+  test('homepage: all navbar buttons stay white regardless of theme, language, or menu state', async ({ page, isMobile }) => {
     test.skip(!isMobile, 'Mobile only');
     await page.goto('/');
     await page.waitForTimeout(300);
 
-    // Menu closed — buttons should be white (over hero image)
-    const closedColor = await getButtonColor(page, '.theme-toggle');
-    // White-ish: rgba(255,255,255,0.9) computes to rgb(255,255,255) or similar
-    const r = parseInt(closedColor.match(/\d+/g)![0]);
-    expect(r).toBeGreaterThan(200); // white range
+    // Menu closed — all buttons white
+    assertWhite(await getButtonColor(page, '.theme-toggle'), 'theme-toggle (closed, initial)');
+    assertWhite(await getButtonColor(page, '.lang-toggle'), 'lang-toggle (closed, initial)');
+    assertWhite(await getHamburgerColor(page), 'hamburger (closed, initial)');
 
-    // Open menu
-    await page.locator('.hamburger').evaluate((el: HTMLElement) => el.click());
-    await page.waitForTimeout(400);
-
-    // Menu open — buttons should be theme-aware (not white)
-    const openColor = await getButtonColor(page, '.theme-toggle');
-    expect(openColor).not.toBe(closedColor);
-
-    // Toggle theme with menu open — color should change (theme-aware)
-    const colorBefore = openColor;
+    // Toggle theme with menu closed — still white
     await page.locator('.theme-toggle').evaluate((el: HTMLElement) => el.click());
     await page.waitForTimeout(300);
-    const colorAfter = await getButtonColor(page, '.theme-toggle');
-    expect(colorAfter).not.toBe(colorBefore);
+    assertWhite(await getButtonColor(page, '.theme-toggle'), 'theme-toggle (closed, after theme toggle)');
+    assertWhite(await getButtonColor(page, '.lang-toggle'), 'lang-toggle (closed, after theme toggle)');
+    assertWhite(await getHamburgerColor(page), 'hamburger (closed, after theme toggle)');
+
+    // Open menu — still white
+    await page.locator('.hamburger').evaluate((el: HTMLElement) => el.click());
+    await page.waitForTimeout(400);
+    assertWhite(await getButtonColor(page, '.theme-toggle'), 'theme-toggle (open)');
+    assertWhite(await getButtonColor(page, '.lang-toggle'), 'lang-toggle (open)');
+    assertWhite(await getHamburgerColor(page), 'hamburger (open)');
+
+    // Toggle theme with menu open — still white
+    await page.locator('.theme-toggle').evaluate((el: HTMLElement) => el.click());
+    await page.waitForTimeout(300);
+    assertWhite(await getButtonColor(page, '.theme-toggle'), 'theme-toggle (open, after theme toggle)');
+    assertWhite(await getButtonColor(page, '.lang-toggle'), 'lang-toggle (open, after theme toggle)');
+    assertWhite(await getHamburgerColor(page), 'hamburger (open, after theme toggle)');
+
+    // Toggle language — still white
+    await page.locator('.lang-toggle').evaluate((el: HTMLElement) => el.click());
+    await page.waitForTimeout(300);
+    assertWhite(await getButtonColor(page, '.theme-toggle'), 'theme-toggle (open, after lang toggle)');
+    assertWhite(await getButtonColor(page, '.lang-toggle'), 'lang-toggle (open, after lang toggle)');
+    assertWhite(await getHamburgerColor(page), 'hamburger (open, after lang toggle)');
   });
 
   const OTHER_PAGES = ['/about/', '/projects/', '/services/', '/contact/'];
 
   for (const path of OTHER_PAGES) {
-    test(`${path}: toggle colors change with theme when menu open`, async ({ page, isMobile }) => {
+    test(`${path}: toggle colors change with theme regardless of menu state`, async ({ page, isMobile }) => {
       test.skip(!isMobile, 'Mobile only');
       await page.goto(path);
+      await page.waitForTimeout(300);
 
-      // Open menu
-      await page.locator('.hamburger').evaluate((el: HTMLElement) => el.click());
-      await page.waitForTimeout(400);
+      // Menu closed — toggle theme, color should change
+      const closedBefore = await getButtonColor(page, '.theme-toggle');
+      await page.locator('.theme-toggle').evaluate((el: HTMLElement) => el.click());
+      await page.waitForTimeout(300);
+      const closedAfter = await getButtonColor(page, '.theme-toggle');
+      expect(closedAfter, 'menu closed: color should change with theme').not.toBe(closedBefore);
 
-      // Get color before theme toggle
-      const colorBefore = await getButtonColor(page, '.theme-toggle');
-
-      // Toggle theme
+      // Toggle back
       await page.locator('.theme-toggle').evaluate((el: HTMLElement) => el.click());
       await page.waitForTimeout(300);
 
-      const colorAfter = await getButtonColor(page, '.theme-toggle');
-      // Color should change because these pages use theme-aware colors
-      expect(colorAfter).not.toBe(colorBefore);
+      // Menu open — toggle theme, color should change
+      await page.locator('.hamburger').evaluate((el: HTMLElement) => el.click());
+      await page.waitForTimeout(400);
+      const openBefore = await getButtonColor(page, '.theme-toggle');
+      await page.locator('.theme-toggle').evaluate((el: HTMLElement) => el.click());
+      await page.waitForTimeout(300);
+      const openAfter = await getButtonColor(page, '.theme-toggle');
+      expect(openAfter, 'menu open: color should change with theme').not.toBe(openBefore);
     });
   }
 });
