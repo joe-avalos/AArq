@@ -22,14 +22,14 @@ const t = ui;
     <slot />
   </div>
 
-  <button class="carousel-prev" type="button" aria-label="">
+  <button class="carousel-prev" type="button" aria-label={t.en.carousel_prev}>
     <span lang="en">{t.en.carousel_prev}</span><span lang="es">{t.es.carousel_prev}</span>
     <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M13 4L7 10L13 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   </button>
 
-  <button class="carousel-next" type="button" aria-label="">
+  <button class="carousel-next" type="button" aria-label={t.en.carousel_next}>
     <span lang="en">{t.en.carousel_next}</span><span lang="es">{t.es.carousel_next}</span>
     <svg aria-hidden="true" focusable="false" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M7 4L13 10L7 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -46,8 +46,9 @@ const t = ui;
   }
 
   .carousel-fullscreen {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
+    height: 100dvh;
   }
 
   .carousel-track {
@@ -56,7 +57,6 @@ const t = ui;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
     height: 100%;
-    -webkit-overflow-scrolling: touch;
   }
 
   .carousel-track::-webkit-scrollbar {
@@ -80,8 +80,8 @@ const t = ui;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -100,8 +100,15 @@ const t = ui;
     right: var(--space-sm, 0.75rem);
   }
 
-  .carousel-prev:hover,
-  .carousel-next:hover {
+  @media (hover: hover) {
+    .carousel-prev:hover,
+    .carousel-next:hover {
+      background: rgba(0, 0, 0, 0.72);
+    }
+  }
+
+  .carousel-prev:active,
+  .carousel-next:active {
     background: rgba(0, 0, 0, 0.72);
   }
 
@@ -130,27 +137,28 @@ const t = ui;
   }
 
   .carousel-dots button {
-    width: 10px;
-    height: 10px;
+    width: 26px;
+    height: 26px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
-    padding: 0;
-    background: var(--color-border, rgba(255, 255, 255, 0.45));
-    transition: background 0.2s ease;
+    padding: 8px;
+    background-clip: content-box;
+    background-color: var(--color-border, rgba(255, 255, 255, 0.45));
+    transition: background-color 0.2s ease;
   }
 
   .carousel-dots button[aria-selected='true'] {
-    background: var(--color-accent, #ffffff);
+    background-color: var(--color-accent, #ffffff);
   }
 
   /* In fullscreen context, always use white dots */
   .carousel-fullscreen .carousel-dots button {
-    background: rgba(255, 255, 255, 0.45);
+    background-color: rgba(255, 255, 255, 0.45);
   }
 
   .carousel-fullscreen .carousel-dots button[aria-selected='true'] {
-    background: #ffffff;
+    background-color: #ffffff;
   }
 </style>
 
@@ -170,6 +178,24 @@ const t = ui;
 
   .lightbox-overlay[hidden] {
     display: none;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: var(--space-sm, 0.75rem);
+    right: var(--space-sm, 0.75rem);
+    width: 44px;
+    height: 44px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
   }
 
   .lightbox-img {

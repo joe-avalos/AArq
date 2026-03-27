@@ -23,11 +23,11 @@ const slides = [
 ---
 
 <Page
-  title="Home"
-  description="Avalos Arquitectos y Asociados — Architecture firm in Cabo San Lucas, Mexico. Over 40 years creating lifestyles."
+  title="Architecture &amp; Design Firm in Cabo San Lucas"
+  description="Avalos Arquitectos y Asociados — Luxury architecture, design, and construction in Cabo San Lucas, Mexico. Over 40 years creating lifestyles."
   headerVariant="home"
   showFooter={false}
-  preloadImage="https://avalosarquitectos.com/public/content/homepage/homepage-slider-1-min.jpg"
+  preloadImage="https://avalosarquitectos.com/public/content/homepage/homepage-slider-16-min.jpg"
 >
   <div class="hero">
     <Carousel label={ui.en.carousel_aria} autoplay={true} fullscreen={true}>
@@ -42,10 +42,10 @@ const slides = [
       ))}
     </Carousel>
     <div class="hero-overlay">
-      <p class="hero-tagline">
+      <h1 class="hero-tagline">
         <span lang="en">{ui.en.hero_tagline}</span>
         <span lang="es">{ui.es.hero_tagline}</span>
-      </p>
+      </h1>
     </div>
   </div>
 </Page>
@@ -54,6 +54,7 @@ const slides = [
   .hero {
     position: relative;
     height: 100vh;
+    height: 100dvh;
     margin-top: calc(-1 * var(--header-height));
     width: 100%;
   }

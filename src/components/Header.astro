@@ -29,7 +29,7 @@ const t = ui;
       />
     </a>
 
-    <nav class="main-nav" aria-label="Main navigation">
+    <nav class="main-nav" id="main-nav" aria-label="Main navigation">
       <ul class="nav-list">
         <li>
           <a href="/projects/" class={active === 'projects' ? 'active' : undefined}>
@@ -100,6 +100,7 @@ const t = ui;
         class="hamburger"
         type="button"
         aria-expanded="false"
+        aria-controls="main-nav"
         aria-label={t.en.menu_open}
         data-label-open={t.en.menu_open}
         data-label-close={t.en.menu_close}
@@ -299,8 +300,8 @@ const t = ui;
     border: none;
     cursor: pointer;
     padding: var(--space-xs);
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 2.75rem;
+    height: 2.75rem;
   }
 
   .hamburger-line {
@@ -314,6 +315,10 @@ const t = ui;
   .header-home .hamburger-line {
     background: #ffffff;
     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
+  }
+  .header-home .hamburger[aria-expanded="true"] .hamburger-line {
+    background: var(--color-text);
+    filter: none;
   }
 
   /* === Mobile === */
@@ -366,6 +371,27 @@ const t = ui;
     .dropdown a {
       padding: 0.25rem 0;
     }
+
+    /* Reset home-variant styles for mobile menu — solid bg, not the hero image */
+    .header-home .nav-list a {
+      color: var(--color-text-secondary);
+      text-shadow: none;
+    }
+    .header-home .nav-list a:hover,
+    .header-home .nav-list a.active {
+      color: var(--color-text);
+    }
+    .header-home .dropdown {
+      background: none;
+      border-color: transparent;
+    }
+    .header-home .dropdown a {
+      color: var(--color-text-secondary) !important;
+      text-shadow: none;
+    }
+    .header-home .dropdown a:hover {
+      color: var(--color-text) !important;
+    }
   }
 </style>
 
@@ -387,4 +413,56 @@ const t = ui;
       });
     });
   }
+
+  // Keyboard-accessible dropdowns on desktop
+  document.querySelectorAll('.has-dropdown').forEach((item) => {
+    const trigger = item.querySelector(':scope > a') as HTMLAnchorElement | null;
+    const dropdown = item.querySelector('.dropdown') as HTMLElement | null;
+    if (!trigger || !dropdown) return;
+
+    trigger.setAttribute('aria-expanded', 'false');
+
+    function showDropdown() {
+      dropdown!.style.display = 'block';
+      trigger!.setAttribute('aria-expanded', 'true');
+    }
+    function hideDropdown() {
+      dropdown!.style.display = '';
+      trigger!.setAttribute('aria-expanded', 'false');
+    }
+
+    // Show on focus into the dropdown area
+    trigger.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'Enter' && dropdown.style.display !== 'block') {
+        if (e.key === 'ArrowDown') e.preventDefault();
+        showDropdown();
+        const first = dropdown.querySelector('a') as HTMLAnchorElement | null;
+        if (first && e.key === 'ArrowDown') first.focus();
+      }
+    });
+
+    // Arrow navigation within dropdown
+    dropdown.addEventListener('keydown', (e) => {
+      const links = Array.from(dropdown.querySelectorAll('a')) as HTMLAnchorElement[];
+      const idx = links.indexOf(e.target as HTMLAnchorElement);
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        links[(idx + 1) % links.length]?.focus();
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        if (idx <= 0) { trigger!.focus(); hideDropdown(); }
+        else links[idx - 1]?.focus();
+      } else if (e.key === 'Escape') {
+        hideDropdown();
+        trigger!.focus();
+      }
+    });
+
+    // Hide on focus leaving the dropdown group
+    item.addEventListener('focusout', (e) => {
+      requestAnimationFrame(() => {
+        if (!item.contains(document.activeElement)) hideDropdown();
+      });
+    });
+  });
 </script>

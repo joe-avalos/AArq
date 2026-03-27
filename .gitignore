@@ -15,6 +15,9 @@ CLAUDE.md
 # Internal docs
 docs/
 
+# Reusable templates
+templates/
+
 # Misc
 *.json
 !package.json

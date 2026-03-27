@@ -65,7 +65,6 @@ const filters = [
     .filter-tabs {
       flex-wrap: nowrap;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       gap: 0;
       mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
@@ -92,7 +91,12 @@ const filters = [
     transition: color 0.2s ease, border-color 0.2s ease;
   }
 
-  .filter-tabs button:hover {
+  @media (hover: hover) {
+    .filter-tabs button:hover {
+      color: var(--color-text, #1a1a1a);
+    }
+  }
+  .filter-tabs button:active {
     color: var(--color-text, #1a1a1a);
   }
 
@@ -155,8 +159,10 @@ const filters = [
     transition: transform 0.4s ease;
   }
 
-  .project-card:hover img {
-    transform: scale(1.04);
+  @media (hover: hover) {
+    .project-card:hover img {
+      transform: scale(1.04);
+    }
   }
 
   .project-card-info {

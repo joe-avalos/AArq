@@ -53,10 +53,19 @@ export function initFilter(container) {
   }
 
   function selectTab(tab) {
-    tabs.forEach((t) => t.setAttribute('aria-selected', 'false'));
+    tabs.forEach((t) => {
+      t.setAttribute('aria-selected', 'false');
+      t.setAttribute('tabindex', '-1');
+    });
     tab.setAttribute('aria-selected', 'true');
+    tab.setAttribute('tabindex', '0');
     filterCards(tab.dataset.filter);
   }
+
+  // Set initial tabindex state
+  tabs.forEach((t, i) => {
+    t.setAttribute('tabindex', i === 0 ? '0' : '-1');
+  });
 
   // Click handler
   tabs.forEach((tab) => {

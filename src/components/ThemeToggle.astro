@@ -22,13 +22,15 @@ import { ui } from '../i18n/ui';
     border: none;
     color: var(--color-text);
     cursor: pointer;
-    padding: var(--space-xs);
+    padding: 0.75rem;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: color 0.2s ease;
   }
-  .theme-toggle:hover { color: var(--color-accent); }
+  @media (hover: hover) {
+    .theme-toggle:hover { color: var(--color-accent); }
+  }
   .hidden { display: none; }
 </style>
 

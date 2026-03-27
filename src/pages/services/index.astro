@@ -143,7 +143,6 @@ const tabsData = await Promise.all(
     .tab-list {
       flex-wrap: nowrap;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
       -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
@@ -170,8 +169,10 @@ const tabsData = await Promise.all(
     transition: color 0.2s ease, border-color 0.2s ease;
   }
 
-  .tab-button:hover {
-    color: var(--color-text, #111827);
+  @media (hover: hover) {
+    .tab-button:hover {
+      color: var(--color-text, #111827);
+    }
   }
 
   .tab-button[aria-selected='true'] {

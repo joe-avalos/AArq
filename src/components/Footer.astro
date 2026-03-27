@@ -68,7 +68,7 @@ const t = ui;
           <a
             href="https://maps.app.goo.gl/d9BxKSN5XKhLBRo56"
             target="_blank"
-            rel="nofollow noopener"
+            rel="nofollow noopener noreferrer"
             class="footer-address-link"
           >
             Camino del Pedernal 160<br />
@@ -202,9 +202,11 @@ const t = ui;
     transition: color 0.2s ease;
   }
 
-  .footer-link-list a:hover,
-  .footer-address-link:hover {
-    color: var(--color-accent);
+  @media (hover: hover) {
+    .footer-link-list a:hover,
+    .footer-address-link:hover {
+      color: var(--color-accent);
+    }
   }
 
   /* Address */

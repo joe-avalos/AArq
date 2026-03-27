@@ -29,6 +29,7 @@
   --color-accent: #003263;
   --color-accent-hover: #0C44AF;
   --color-border: #e0ddd8;
+  --color-text-muted: #78716c;
   --color-footer-bg: #f0eeeb;
 
   /* === LAYOUT === */
@@ -54,5 +55,6 @@
   --color-accent: #c4a87c;
   --color-accent-hover: #d4b88c;
   --color-border: #2a2520;
+  --color-text-muted: #8c857e;
   --color-footer-bg: #0a0a0a;
 }

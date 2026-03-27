@@ -1,0 +1,57 @@
+---
+import Page from '../layouts/Page.astro';
+---
+
+<Page
+  title="Page Not Found"
+  description="The page you are looking for does not exist."
+>
+  <section class="not-found">
+    <h1>
+      <span lang="en">Page Not Found</span>
+      <span lang="es">Pagina No Encontrada</span>
+    </h1>
+    <p>
+      <span lang="en">The page you are looking for does not exist or has been moved.</span>
+      <span lang="es">La pagina que busca no existe o ha sido movida.</span>
+    </p>
+    <a href="/">
+      <span lang="en">Back to Home</span>
+      <span lang="es">Volver al Inicio</span>
+    </a>
+  </section>
+</Page>
+
+<style>
+  .not-found {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 60vh;
+    padding: var(--space-lg) var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .not-found h1 {
+    font-size: var(--text-xl);
+    font-weight: var(--font-weight-light);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .not-found p {
+    color: var(--color-text-secondary);
+    font-size: var(--text-base);
+  }
+
+  .not-found a {
+    margin-top: var(--space-sm);
+    font-size: var(--text-sm);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid var(--color-accent);
+    padding-bottom: 2px;
+  }
+</style>

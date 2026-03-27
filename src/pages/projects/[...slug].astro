@@ -108,7 +108,7 @@ const jsonLd = {
         class="parallax-divider"
         role="img"
         aria-label={title}
-        style={`background-image: url(${parallaxSrc})`}
+        style={`background-image: url(${parallaxSrc}); --bg-img: url(${parallaxSrc})`}
       ></div>
     )}
 
@@ -247,6 +247,29 @@ const jsonLd = {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
+  }
+
+  /* iOS/mobile don't support background-attachment:fixed — simulate with an
+     oversized pseudo-element behind a clipped container so the image still
+     has a subtle depth/window effect as the user scrolls past. */
+  @supports (-webkit-touch-callout: none) {
+    .parallax-divider {
+      position: relative;
+      overflow: hidden;
+      background: none !important;
+      background-attachment: initial;
+    }
+    .parallax-divider::before {
+      content: '';
+      position: absolute;
+      inset: -30% 0;
+      background: inherit;
+      background-image: var(--bg-img);
+      background-size: cover;
+      background-position: center;
+      background-attachment: scroll;
+      z-index: -1;
+    }
   }
 
   @media (max-width: 768px) {

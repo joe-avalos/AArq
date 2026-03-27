@@ -69,9 +69,13 @@ h3 { font-size: var(--text-lg); }
 a {
   color: var(--color-accent);
   text-decoration: none;
-  transition: color 0.2s ease;
 }
-a:hover { color: var(--color-accent-hover); }
+@media (hover: hover) {
+  a:hover { color: var(--color-accent-hover); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  a { transition: color 0.2s ease; }
+}
 
 img {
   max-width: 100%;

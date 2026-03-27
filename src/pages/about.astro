@@ -435,7 +435,6 @@ const tabs = [
     .tab-list {
       flex-wrap: nowrap;
       overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
       -webkit-mask-image: linear-gradient(to right, black 0, black calc(100% - 1.5rem), transparent 100%);
@@ -462,8 +461,10 @@ const tabs = [
     white-space: nowrap;
   }
 
-  .tab-button:hover {
-    color: var(--color-text, #111827);
+  @media (hover: hover) {
+    .tab-button:hover {
+      color: var(--color-text, #111827);
+    }
   }
 
   .tab-button[aria-selected='true'] {
@@ -544,6 +545,7 @@ const tabs = [
   /* ---- Shared parallax banners ---- */
   .parallax-banner {
     width: 100vw;
+    max-width: 100%;
     margin-left: calc(50% - 50vw);
     height: 420px;
     background-size: cover;
@@ -584,6 +586,29 @@ const tabs = [
     flex-direction: column;
     gap: 0.25em;
     padding-inline: var(--space-md, 1.5rem);
+  }
+
+  /* iOS/mobile: simulate parallax with oversized pseudo-element */
+  @supports (-webkit-touch-callout: none) {
+    .parallax-banner {
+      overflow: hidden;
+      background-attachment: scroll;
+    }
+    .parallax-banner::after {
+      content: '';
+      position: absolute;
+      inset: -30% 0;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+    .history-banner::after {
+      background-image: url('https://avalosarquitectos.com/public/content/about/about-parallax-1.jpg');
+    }
+    .mission-banner::after {
+      background-image: url('https://avalosarquitectos.com/public/content/about/the-arhitecture.jpg');
+    }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -720,6 +745,7 @@ const tabs = [
     color: #ffffff;
     padding-block: var(--space-2xl, 4rem);
     width: 100vw;
+    max-width: 100%;
     margin-left: calc(50% - 50vw);
   }
 
@@ -775,8 +801,10 @@ const tabs = [
     transition: opacity 0.2s ease;
   }
 
-  .testimonial-link:hover {
-    opacity: 0.7;
+  @media (hover: hover) {
+    .testimonial-link:hover {
+      opacity: 0.7;
+    }
   }
 
   /* ---- Team panel ---- */
