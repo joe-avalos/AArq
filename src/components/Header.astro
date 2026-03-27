@@ -289,6 +289,19 @@ const t = ui;
     flex-shrink: 0;
   }
 
+  /* Home variant — force white on action buttons */
+  .header-home :global(.theme-toggle),
+  .header-home :global(.lang-toggle) {
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  .header-home :global(.theme-toggle:hover),
+  .header-home :global(.lang-toggle:hover) {
+    color: #ffffff;
+    border-color: rgba(255, 255, 255, 0.8);
+  }
+
   /* === Hamburger === */
   .hamburger {
     display: none;
@@ -316,7 +329,7 @@ const t = ui;
     background: #ffffff;
     filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.6));
   }
-  .header-home .hamburger[aria-expanded="true"] .hamburger-line {
+  .header-home.menu-open .hamburger-line {
     background: var(--color-text);
     filter: none;
   }
@@ -372,37 +385,45 @@ const t = ui;
       padding: 0.25rem 0;
     }
 
-    /* Reset home-variant styles for mobile menu — solid bg, not the hero image */
-    .header-home .nav-list a {
+    /* Reset home-variant styles only when menu is open — solid bg, not the hero image */
+    .header-home.menu-open .nav-list a {
       color: var(--color-text-secondary);
       text-shadow: none;
     }
-    .header-home .nav-list a:hover,
-    .header-home .nav-list a.active {
+    .header-home.menu-open .nav-list a:hover,
+    .header-home.menu-open .nav-list a.active {
       color: var(--color-text);
     }
-    .header-home .dropdown {
+    .header-home.menu-open .dropdown {
       background: none;
       border-color: transparent;
     }
-    .header-home .dropdown a {
+    .header-home.menu-open .dropdown a {
       color: var(--color-text-secondary) !important;
       text-shadow: none;
     }
-    .header-home .dropdown a:hover {
+    .header-home.menu-open .dropdown a:hover {
       color: var(--color-text) !important;
+    }
+    .header-home.menu-open :global(.theme-toggle),
+    .header-home.menu-open :global(.lang-toggle) {
+      color: var(--color-text);
+      text-shadow: none;
+      border-color: var(--color-border);
     }
   }
 </style>
 
 <script>
+  const header = document.querySelector('.site-header') as HTMLElement | null;
   const hamburger = document.querySelector('.hamburger') as HTMLButtonElement | null;
   const nav = document.querySelector('.main-nav') as HTMLElement | null;
-  if (hamburger && nav) {
+  if (hamburger && nav && header) {
     hamburger.addEventListener('click', () => {
       const isOpen = hamburger.getAttribute('aria-expanded') === 'true';
       hamburger.setAttribute('aria-expanded', String(!isOpen));
       nav.classList.toggle('nav-open', !isOpen);
+      header.classList.toggle('menu-open', !isOpen);
     });
 
     // Close menu when any nav link is clicked (including dropdown items)
@@ -410,6 +431,7 @@ const t = ui;
       link.addEventListener('click', () => {
         hamburger.setAttribute('aria-expanded', 'false');
         nav.classList.remove('nav-open');
+        header.classList.remove('menu-open');
       });
     });
   }

@@ -103,6 +103,20 @@ const tabs = [
       ></div>
 
       <section class="about-history max-width-inner">
+        <div class="history-first">
+          <p>
+            <span lang="en">
+              Jacinto Avalos established his practice in Mexico City in 1970. In 1986, Jacinto Avalos and
+              Ramon Osuna began designing and building projects together in Cabo San Lucas, Mexico. Avalos
+              Arquitectos y Asociados, S.C. ("AAA") was incorporated in January 1991.
+            </span>
+            <span lang="es">
+              Jacinto Ávalos estableció su práctica en la Ciudad de México en 1970. En 1986, Jacinto Ávalos y
+              Ramón Osuna comenzaron a diseñar y construir proyectos juntos en Cabo San Lucas, México. Avalos
+              Arquitectos y Asociados, S.C. ("AAA") fue constituida en enero de 1991.
+            </span>
+          </p>
+        </div>
         <div class="history-image">
           <img
             src="https://avalosarquitectos.com/public/content/about/about-parallax-2.jpg"
@@ -113,18 +127,6 @@ const tabs = [
           />
         </div>
         <div class="history-content">
-        <p>
-          <span lang="en">
-            Jacinto Avalos established his practice in Mexico City in 1970. In 1986, Jacinto Avalos and
-            Ramon Osuna began designing and building projects together in Cabo San Lucas, Mexico. Avalos
-            Arquitectos y Asociados, S.C. ("AAA") was incorporated in January 1991.
-          </span>
-          <span lang="es">
-            Jacinto Ávalos estableció su práctica en la Ciudad de México en 1970. En 1986, Jacinto Ávalos y
-            Ramón Osuna comenzaron a diseñar y construir proyectos juntos en Cabo San Lucas, México. Avalos
-            Arquitectos y Asociados, S.C. ("AAA") fue constituida en enero de 1991.
-          </span>
-        </p>
         <p>
           <span lang="en">
             AAA employs architects, designers, engineers, and builders of all trades who have extensive
@@ -429,6 +431,8 @@ const tabs = [
     flex-wrap: wrap;
     gap: var(--space-xs, 0.5rem);
     margin-bottom: 0;
+    position: relative;
+    z-index: 2;
   }
 
   @media (max-width: 600px) {
@@ -545,7 +549,6 @@ const tabs = [
   /* ---- Shared parallax banners ---- */
   .parallax-banner {
     width: 100vw;
-    max-width: 100%;
     margin-left: calc(50% - 50vw);
     height: 420px;
     background-size: cover;
@@ -625,17 +628,27 @@ const tabs = [
 
   /* ---- History panel ---- */
   .about-history {
-    display: flex;
-    align-items: start;
-    gap: var(--space-xl, 3rem);
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 0 var(--space-xl, 3rem);
     padding-block: var(--space-md, 1.5rem) var(--space-xl, 3rem);
   }
 
   .history-image {
-    flex: 0 0 380px;
+    grid-row: 1 / -1;
+    grid-column: 1;
     width: 380px;
     height: 330px;
     overflow: hidden;
+  }
+
+  .history-first {
+    grid-column: 2;
+  }
+
+  .history-content {
+    grid-column: 2;
   }
 
   .history-image img {
@@ -644,13 +657,10 @@ const tabs = [
     object-fit: cover;
     display: block;
     will-change: transform;
-    animation: pan-slide 216s linear infinite alternate;
+    animation: pan-slide 180s linear infinite alternate;
   }
 
-  .history-content {
-    flex: 1 1 0;
-  }
-
+  .history-first p,
   .history-content p {
     line-height: 1.75;
     margin-block-end: var(--space-md, 1.5rem);
@@ -663,10 +673,11 @@ const tabs = [
 
   @media (max-width: 768px) {
     .about-history {
+      display: flex;
       flex-direction: column;
+      gap: var(--space-md, 1.5rem);
     }
     .history-image {
-      flex: none;
       width: 100%;
       height: 250px;
     }
@@ -745,7 +756,6 @@ const tabs = [
     color: #ffffff;
     padding-block: var(--space-2xl, 4rem);
     width: 100vw;
-    max-width: 100%;
     margin-left: calc(50% - 50vw);
   }
 
@@ -757,11 +767,10 @@ const tabs = [
 
   .testimonial-slide {
     padding-inline: var(--space-xl, 3rem);
-    padding-block: var(--space-lg, 2rem);
+    padding-block: var(--space-lg, 2rem) calc(var(--space-lg, 2rem) + 2rem);
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 320px;
   }
 
   .testimonial-quote {

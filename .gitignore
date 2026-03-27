@@ -18,6 +18,12 @@ docs/
 # Reusable templates
 templates/
 
+# QA
+test-mobile.md
+lighthouse-reports/
+playwright-report/
+test-results/
+
 # Misc
 *.json
 !package.json

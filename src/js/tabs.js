@@ -11,8 +11,11 @@
  *   - Hash-based deep linking on init and on hashchange (e.g. #construction activates that tab)
  */
 export function initTabs(container) {
-  const tabs = Array.from(container.querySelectorAll('[role="tab"]'));
-  const panels = Array.from(container.querySelectorAll('[role="tabpanel"]'));
+  // Only select tabs from the container's own tablists, not nested ones (e.g. carousel dots)
+  const tablist = container.querySelector(':scope > [role="tablist"], :scope > * > [role="tablist"]');
+  if (!tablist) return;
+  const tabs = Array.from(tablist.querySelectorAll('[role="tab"]'));
+  const panels = Array.from(container.querySelectorAll(':scope > [role="tabpanel"]'));
 
   if (tabs.length === 0 || panels.length === 0) return;
 

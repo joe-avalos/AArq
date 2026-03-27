@@ -51,12 +51,22 @@ const slides = [
 </Page>
 
 <style>
+  /* Homepage: hero fills viewport, no scrolling */
+  :global(body) {
+    overflow: hidden;
+    height: 100vh;
+    height: 100dvh;
+  }
+  :global(main#main-content) {
+    padding-top: 0;
+  }
+
   .hero {
     position: relative;
     height: 100vh;
     height: 100dvh;
-    margin-top: calc(-1 * var(--header-height));
     width: 100%;
+    overflow: hidden;
   }
 
   .hero-slide {
